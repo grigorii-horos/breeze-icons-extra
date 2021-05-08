@@ -1,0 +1,9 @@
+
+breeze-icons/
+breeze-icons-extra/
+node_modules/
+out/
+pkg/
+src/
+breeze-icons-extra-*.pkg.*
+
