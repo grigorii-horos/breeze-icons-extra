@@ -32,13 +32,11 @@ const colors = {
   magenta: { rotate: 110, saturate: 0.25, darken: 0.3 },
 
   red: { rotate: 145, saturate: 0.15, darken: 0.2 },
-  pink: { rotate: 135, saturate: 1, lighten: 0.15 },
 
   grey: { desaturate: 1 },
 
-  bluegrey: { rotate: 20, desaturate: 0.7 },
-  black: { desaturate: 1, darken: 0.5 },
-  white: { desaturate: 1, lighten: 1 },
+  // black: { desaturate: 1, darken: 0.5 },
+  // white: { desaturate: 1, lighten: 1 },
 };
 
 const templates = [
