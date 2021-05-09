@@ -18,24 +18,25 @@ const basecolor = "#3daee9";
 
 const colors = {
   blue: "base",
-  indigo: { rotate: 30, desaturate: 0.25, darken: 0.1 },
 
-  cyan: { rotate: 340, saturate: 0.3, darken: 0.2 },
+  cyan: { rotate: 345, saturate: 0.2, darken: 0.2 },
   teal: { rotate: 340, desaturate: 0.3, darken: 0.15 },
 
-  green: { rotate: 280, desaturate: 0.25, darken: 0.2 },
+  green: { rotate: 300, desaturate: 0.3, darken: 0.2 },
 
-  yellow: { rotate: 215, saturate: 0.15, darken: 0.2 },
+  yellow: { rotate: 210, saturate: 0.15, darken: 0.1 },
   orange: { rotate: 190, saturate: 0.5, darken: 0.15 },
-  brown: { rotate: 190, saturate: 0.1, darken: 0.5 },
+  brown: { rotate: 190, desaturate: 0.3, darken: 0.1 },
 
-  violet: { rotate: 70, saturate: 0, darken: 0.1 },
-  magenta: { rotate: 100, saturate: 0, darken: 0.1 },
+  violet: { rotate: 80, desaturate: 0.1, darken: 0 },
+  magenta: { rotate: 110, saturate: 0.25, darken: 0.3 },
 
-  red: { rotate: 155, saturate: 0.05, darken: 0.1 },
+  red: { rotate: 145, saturate: 0.15, darken: 0.2 },
   pink: { rotate: 135, saturate: 1, lighten: 0.15 },
 
   grey: { desaturate: 1 },
+
+
   // bluegrey: { rotate: 20, desaturate: 0.7 },
   // black: { desaturate: 1, darken: 0.5 },
   // white: { desaturate: 1, lighten: 1 },
