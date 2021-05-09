@@ -17,6 +17,7 @@ const transform = ["32", "48", "64", "96"];
 const basecolor = "#3daee9";
 
 const colors = {
+  blue: {},
 
   cyan: { rotate: 345, saturate: 0.2, darken: 0.2 },
   teal: { rotate: 340, desaturate: 0.3, darken: 0.15 },
@@ -31,14 +32,13 @@ const colors = {
   magenta: { rotate: 110, saturate: 0.25, darken: 0.3 },
 
   red: { rotate: 145, saturate: 0.15, darken: 0.2 },
-  // pink: { rotate: 135, saturate: 1, lighten: 0.15 },
+  pink: { rotate: 135, saturate: 1, lighten: 0.15 },
 
   grey: { desaturate: 1 },
 
-
-  // bluegrey: { rotate: 20, desaturate: 0.7 },
-  // black: { desaturate: 1, darken: 0.5 },
-  // white: { desaturate: 1, lighten: 1 },
+  bluegrey: { rotate: 20, desaturate: 0.7 },
+  black: { desaturate: 1, darken: 0.5 },
+  white: { desaturate: 1, lighten: 1 },
 };
 
 const templates = [
@@ -122,105 +122,76 @@ const fn = async (iconsDir, iconsOutDir) => {
   }
 
   for (const color of Object.keys(colors)) {
-    if (colors[color] === "base") {
-      const linksForBase = Object.entries(links).concat(
-        templates.map((one) => [one, one])
-      );
+    for (const size of justCopy) {
+      for (const template of templates) {
+        let svg = await readFile(
+          `${iconsDir}/${size}/folder${template ? `-${template}` : ""}.svg`,
+          "UTF-8"
+        );
+        const newColor = genColor(color, basecolor);
 
-      for (const size of [...justCopy, ...transform]) {
-        for (const [target, path] of linksForBase) {
-          try {
-            await symlink(
-              `folder${target ? `-${target}` : ""}.svg`,
-              `${iconsOutDir}/${size}/folder-${color}${
-                path ? `-${path}` : ""
-              }.svg`
-            );
-          } catch {}
-        }
+        svg = svg.replaceAll("fill:currentColor", `fill:${newColor}`);
+        svg = svg.replaceAll('fill="currentColor"', `fill="${newColor}"`);
 
-        for (const [path, target] of linksForBase) {
-          try {
-            await symlink(
-              `folder${target ? `-${target}` : ""}.svg`,
-              `${iconsOutDir}/${size}/folder-${color}${
-                path ? `-${path}` : ""
-              }.svg`
-            );
-          } catch {}
-        }
-      }
-    } else {
-      for (const size of justCopy) {
-        for (const template of templates) {
-          let svg = await readFile(
-            `${iconsDir}/${size}/folder${template ? `-${template}` : ""}.svg`,
-            "UTF-8"
-          );
-          const newColor = genColor(color, basecolor);
+        svg = svg.replaceAll(
+          'fill:#da4453',
+          `fill:${newColor}`
+        );
 
-          svg = svg.replaceAll("fill:currentColor", `fill:${newColor}`);
-          svg = svg.replaceAll('fill="currentColor"', `fill="${newColor}"`);
-          svg = svg.replaceAll(
-            'style="fill:#da4453"',
-            `style="fill:${newColor}"`
-          );
-
-          await writeFile(
-            `${iconsOutDir}/${size}/folder-${color}${
-              template ? `-${template}` : ""
-            }.svg`,
-            svg
-          );
-        }
-
-        for (const [target, path] of Object.entries(links)) {
-          try {
-            await symlink(
-              `folder-${color}${target ? `-${target}` : ""}.svg`,
-              `${iconsOutDir}/${size}/folder-${color}${
-                path ? `-${path}` : ""
-              }.svg`
-            );
-          } catch {}
-        }
+        await writeFile(
+          `${iconsOutDir}/${size}/folder-${color}${
+            template ? `-${template}` : ""
+          }.svg`,
+          svg
+        );
       }
 
-      for (const size of transform) {
-        for (const template of templates) {
-          let svg = await readFile(
-            `${iconsDir}/${size}/folder${template ? `-${template}` : ""}.svg`,
-            "UTF-8"
-          );
-
-          const colorsInFile = [...svg.matchAll(/#[\da-f]{3,6}/gi)].map(
-            (item) => item[0]
-          );
-
-          for (const colorInFile of colorsInFile) {
-            const newColor = genColor(color, colorInFile);
-
-            svg = svg.replaceAll(colorInFile, newColor);
-          }
-
-          await writeFile(
+      for (const [target, path] of Object.entries(links)) {
+        try {
+          await symlink(
+            `folder-${color}${target ? `-${target}` : ""}.svg`,
             `${iconsOutDir}/${size}/folder-${color}${
-              template ? `-${template}` : ""
-            }.svg`,
-            svg
+              path ? `-${path}` : ""
+            }.svg`
           );
+        } catch {}
+      }
+    }
+
+    for (const size of transform) {
+      for (const template of templates) {
+        let svg = await readFile(
+          `${iconsDir}/${size}/folder${template ? `-${template}` : ""}.svg`,
+          "UTF-8"
+        );
+
+        const colorsInFile = [...svg.matchAll(/#[\da-f]{3,6}/gi)].map(
+          (item) => item[0]
+        );
+
+        for (const colorInFile of colorsInFile) {
+          const newColor = genColor(color, colorInFile);
+
+          svg = svg.replaceAll(colorInFile, newColor);
         }
 
-        for (const [path, target] of Object.entries(links)) {
-          try {
-            await symlink(
-              `folder-${color}${target ? `-${target}` : ""}.svg`,
-              `${iconsOutDir}/${size}/folder-${color}${
-                path ? `-${path}` : ""
-              }.svg`
-            );
-          } catch {}
-        }
+        await writeFile(
+          `${iconsOutDir}/${size}/folder-${color}${
+            template ? `-${template}` : ""
+          }.svg`,
+          svg
+        );
+      }
+
+      for (const [path, target] of Object.entries(links)) {
+        try {
+          await symlink(
+            `folder-${color}${target ? `-${target}` : ""}.svg`,
+            `${iconsOutDir}/${size}/folder-${color}${
+              path ? `-${path}` : ""
+            }.svg`
+          );
+        } catch {}
       }
     }
   }

@@ -3,7 +3,7 @@
 
 pkgname=breeze-icons-extra
 pkgver=5.82
-pkgrel=6
+pkgrel=8
 pkgdesc="Breeze icon themes for KDE Plasma. Extra version"
 arch=('any')
 url='https://github.com/grigorii-horos/breeze-icons-extra'
