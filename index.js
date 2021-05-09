@@ -17,7 +17,6 @@ const transform = ["32", "48", "64", "96"];
 const basecolor = "#3daee9";
 
 const colors = {
-  blue: "base",
 
   cyan: { rotate: 345, saturate: 0.2, darken: 0.2 },
   teal: { rotate: 340, desaturate: 0.3, darken: 0.15 },
@@ -32,7 +31,7 @@ const colors = {
   magenta: { rotate: 110, saturate: 0.25, darken: 0.3 },
 
   red: { rotate: 145, saturate: 0.15, darken: 0.2 },
-  pink: { rotate: 135, saturate: 1, lighten: 0.15 },
+  // pink: { rotate: 135, saturate: 1, lighten: 0.15 },
 
   grey: { desaturate: 1 },
 
