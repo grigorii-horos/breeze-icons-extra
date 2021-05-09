@@ -6,4 +6,3 @@ pkg/
 src/
 breeze-icons-extra-*.pkg.*
 tmp/
-package-lock.json
