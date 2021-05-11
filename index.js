@@ -6,8 +6,8 @@ import mkdirp from "mkdirp";
 import { copyFile, readFile, symlink, writeFile } from "node:fs/promises";
 
 const iconsDirs = [
-  "./breeze-icons/icons/places",
-  "./breeze-icons/icons-dark/places",
+  "./.icons/icons/places",
+  "./.icons/icons-dark/places",
 ];
 const iconsOutDirs = ["./tmp/icons/places", "./tmp/icons-dark/places"];
 

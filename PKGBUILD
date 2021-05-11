@@ -3,7 +3,7 @@
 
 pkgname=breeze-icons-extra
 pkgver=5.82
-pkgrel=11
+pkgrel=13
 pkgdesc="Breeze icon themes for KDE Plasma. Extra version"
 arch=('any')
 url='https://github.com/grigorii-horos/breeze-icons-extra'
@@ -34,7 +34,8 @@ build() {
     -DCMAKE_BUILD_TYPE=None \
     -DCMAKE_INSTALL_PREFIX=/usr \
     -DBUILD_TESTING=OFF \
-    -DBINARY_ICONS_RESOURCE=ON
+    -DBINARY_ICONS_RESOURCE=ON \
+    -DWITH_ICON_GENERATION=OFF
 
   make
 }
