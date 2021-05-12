@@ -7,3 +7,4 @@ src/
 breeze-icons-extra-*.pkg.*
 tmp/
 .icons/
+install-dir

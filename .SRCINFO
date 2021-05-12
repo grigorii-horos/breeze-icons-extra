@@ -1,7 +1,7 @@
 pkgbase = breeze-icons-extra
 	pkgdesc = Breeze icon themes for KDE Plasma. Extra version
 	pkgver = 5.82
-	pkgrel = 15
+	pkgrel = 18
 	url = https://github.com/grigorii-horos/breeze-icons-extra
 	arch = any
 	groups = kf5
@@ -11,6 +11,7 @@ pkgbase = breeze-icons-extra
 	makedepends = qt5-base
 	makedepends = nodejs
 	makedepends = npm
+	makedepends = parallel
 
 pkgname = breeze-icons-extra
 	optdepends = breeze-icons-extra-light: Install one of this packages

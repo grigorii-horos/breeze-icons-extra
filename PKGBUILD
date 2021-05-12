@@ -3,7 +3,7 @@
 
 pkgname=('breeze-icons-extra' 'breeze-icons-extra-light' 'breeze-icons-extra-dark')
 pkgver=5.82
-pkgrel=15
+pkgrel=18
 pkgdesc="Breeze icon themes for KDE Plasma. Extra version"
 arch=('any')
 url='https://github.com/grigorii-horos/breeze-icons-extra'
@@ -15,6 +15,7 @@ makedepends=(
               'qt5-base'
               'nodejs'
               'npm'
+              'parallel'
             )
 
 source=()
@@ -27,8 +28,8 @@ prepare() {
 build() {
   cd ../
   bash ./build.sh
-  cd ./src
-  cmake ../breeze-icons \
+  cd ./src/build
+  cmake ../../breeze-icons \
     -DCMAKE_BUILD_TYPE=None \
     -DCMAKE_INSTALL_PREFIX=/usr \
     -DBUILD_TESTING=OFF \
@@ -37,7 +38,7 @@ build() {
 
   make
 
-  make -C build DESTDIR="../install-dir" install
+  make DESTDIR="../install-dir" install
 }
 
 package_breeze-icons-extra() {
