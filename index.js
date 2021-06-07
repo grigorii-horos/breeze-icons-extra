@@ -68,7 +68,6 @@ const templates = [
   "text",
   "unlocked",
   "videos",
-
   "",
 ];
 
@@ -144,7 +143,7 @@ const fn = async (iconsDir, iconsOutDir) => {
         );
       }
 
-      for (const [target, path] of Object.entries(links)) {
+      for (const [path, target] of Object.entries(links)) {
         try {
           await symlink(
             `folder-${color}${target ? `-${target}` : ""}.svg`,
@@ -152,7 +151,9 @@ const fn = async (iconsDir, iconsOutDir) => {
               path ? `-${path}` : ""
             }.svg`
           );
-        } catch {}
+        } catch {
+          console.log('Error')
+        }
       }
     }
 
