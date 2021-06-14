@@ -1,71 +1,71 @@
 #!/usr/bin/env bash
 
 labels=(
-  -activities
-  -apple
-  -bookmark
-  -cd
-  -cloud
-  -copy-cloud
-  -desktop
-  -development
-  -documents
-  -documents-open
-  -download
-  -download-open
-  -downloads
-  -drag-accept
-  -dropbox
-  -favorites
-  -games
-  -gdrive
-  -git
-  -github
-  -gitlab
-  -gnome
-  -google-drive
-  -image-people
-  -important
-  -java
-  -linux
-  -locked
-  -mail
-  -mail-cloud
-  -mega
-  -meocloud
-  -music
-  -music-open
-  -network
-  -open
-  -owncloud
-  -pcloud
-  -photo
-  -pictures
-  -pictures-open
-  -print
-  -private
-  -public
-  -publicshare
-  -recent
-  -remote
-  -remote-open
-  -saved-search
-  -script
-  -steam
-  -tar
-  -templates
-  -templates-open
-  -text
-  -torrent
-  -unlocked
-  -vbox
-  -video
-  -videos
-  -videos-open
-  -visiting
-  -wifi
-  -wine
-  -yandex-disk
+  activities
+  apple
+  bookmark
+  cd
+  cloud
+  copy-cloud
+  desktop
+  development
+  documents
+  documents-open
+  download
+  download-open
+  downloads
+  drag-accept
+  dropbox
+  favorites
+  games
+  gdrive
+  git
+  github
+  gitlab
+  gnome
+  google-drive
+  image-people
+  important
+  java
+  linux
+  locked
+  mail
+  mail-cloud
+  mega
+  meocloud
+  music
+  music-open
+  network
+  open
+  owncloud
+  pcloud
+  photo
+  pictures
+  pictures-open
+  print
+  private
+  public
+  publicshare
+  recent
+  remote
+  remote-open
+  saved-search
+  script
+  steam
+  tar
+  templates
+  templates-open
+  text
+  torrent
+  unlocked
+  vbox
+  video
+  videos
+  videos-open
+  visiting
+  wifi
+  wine
+  yandex-disk
 )
 
 colors=(
@@ -95,13 +95,13 @@ if [[ -f "$3/.directory" ]]; then
     iconString=$( grep "Icon=folder" "$3/.directory" )
 
     for currColor in "${colors[@]}"; do
-      if echo "$iconString" | grep -q "$currColor";then
+      if echo "$iconString" | grep -q -- "$currColor";then
         color="$currColor"
       fi
     done
 
     for currLabel in "${labels[@]}"; do
-      if echo "$iconString" | grep -q "$currLabel";then
+      if echo "$iconString" | grep -q -- "$currLabel";then
         label="$currLabel"
       fi
     done
@@ -143,7 +143,7 @@ for i in $@; do
       sed "s/#*Icon=.*/Icon=$iconString/g" "$FILE" > "/tmp/$$" && cat "/tmp/$$" > "$FILE"
     else
       FIND=`grep -e "\[Desktop Entry\]" "$FILE"`
-      
+
       if [ "$FIND" != "" ]; then
         sed "s/#*\[Desktop Entry\]/\[Desktop Entry\]\nIcon=$iconString/g" "$FILE" > "/tmp/$$" && mv "/tmp/$$" "$FILE"
       else
