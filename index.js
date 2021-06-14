@@ -3,7 +3,7 @@
 import Color from "color";
 import memoizee from "memoizee";
 import mkdirp from "mkdirp";
-import { readFile, symlink, writeFile } from "node:fs/promises";
+import { copyFile, readFile, symlink, writeFile } from "node:fs/promises";
 
 const iconsDirs = ["./.icons/icons/places", "./.icons/icons-dark/places"];
 const iconsOutDirs = ["./tmp/icons/places", "./tmp/icons-dark/places"];
@@ -62,6 +62,7 @@ const templates = [
   "text",
   "unlocked",
   "videos",
+  "network-workgroup",
   "",
 ];
 
@@ -92,6 +93,10 @@ const links = {
   txt: "text",
 
   video: "videos",
+};
+
+const copies = {
+  "folder-network-workgroup": "network-workgroup",
 };
 
 const genColor = memoizee((color, initialColor) => {
@@ -143,6 +148,16 @@ const fn = async (iconsDir, iconsOutDir) => {
         );
       } catch {
         // console.log('Error: ')
+      }
+    }
+    for (const [path, target] of Object.entries(copies)) {
+      try {
+        await copyFile(
+          `${iconsDir}/${size}/${target}.svg`,
+          `${iconsDir}/${size}/${path}.svg`
+        );
+      } catch {
+        // console.log("Error:", error);
       }
     }
   }
