@@ -3,7 +3,7 @@
 
 pkgname=('breeze-icons-extra' 'breeze-icons-extra-light' 'breeze-icons-extra-dark')
 pkgver=5.84
-pkgrel=9
+pkgrel=10
 pkgdesc="Breeze icon themes for KDE Plasma. Extra version"
 arch=('any')
 url='https://github.com/grigorii-horos/breeze-icons-extra'
@@ -48,18 +48,22 @@ package_breeze-icons-extra() {
     'breeze-icons-extra-light: Install one of this packages'
     'breeze-icons-extra-dark: Install one of this packages'
   )
+  mkdir -p "${pkgdir}/usr/bin/" "${pkgdir}/usr/share/kservices5/ServiceMenus/"
+  cp change-label.desktop "${pkgdir}/usr/share/kservices5/ServiceMenus/"
+  cp change-color.desktop "${pkgdir}/usr/share/kservices5/ServiceMenus/"
+  cp change-folder-icon "${pkgdir}/usr/bin/"
 }
 
 package_breeze-icons-extra-light() {
   provides=('breeze-icons-extra-light')
   depends=('breeze-icons-extra')
-  mkdir -p "${pkgdir}"/usr/share/icons/breeze
-  cp -Rp ./install-dir/usr/share/icons/breeze/. "${pkgdir}"/usr/share/icons/breeze/
+  mkdir -p "${pkgdir}/usr/share/icons/breeze"
+  cp -Rp ./install-dir/usr/share/icons/breeze/. "${pkgdir}/usr/share/icons/breeze/"
 }
 
 package_breeze-icons-extra-dark() {
   provides=('breeze-icons-extra-dark')
   depends=('breeze-icons-extra')
-  mkdir -p "${pkgdir}"/usr/share/icons/breeze-dark
-  cp -Rp ./install-dir/usr/share/icons/breeze-dark/. "${pkgdir}"/usr/share/icons/breeze-dark/
+  mkdir -p "${pkgdir}/usr/share/icons/breeze-dark"
+  cp -Rp ./install-dir/usr/share/icons/breeze-dark/. "${pkgdir}/usr/share/icons/breeze-dark/"
 }

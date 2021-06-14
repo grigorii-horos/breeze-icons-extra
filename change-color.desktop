@@ -1,0 +1,83 @@
+[Desktop Entry]
+Type=Service
+Encoding=UTF-8
+Version=2.0.3
+ServiceTypes=KonqPopupMenu/Plugin,inode/directory
+Actions=red;orange;brown;yellow;green;teal;cyan;blue;violet;magenta;_SEPARATOR_;grey;_SEPARATOR_;noColor;
+X-KDE-Priority=TopLevel
+X-KDE-StartupNotify=false
+Icon=folder-red
+X-KDE-Submenu=Change color
+X-KDE-Submenu[ru]=Сменить цвет
+
+[Desktop Action noColor]
+Name=No Color
+Name[ru]=No Color
+Icon=folder
+Exec=change-folder-icon color "" %F
+
+[Desktop Action teal]
+Name=Teal
+Name[ru]=Бирюзовый
+Icon=folder-teal
+Exec=change-folder-icon color teal %F
+
+[Desktop Action red]
+Name=Red
+Name[ru]=Красный
+Icon=folder-red
+Exec=change-folder-icon color red %F
+
+[Desktop Action orange]
+Name=Orange
+Name[ru]=Оранжевый
+Icon=folder-orange
+Exec=change-folder-icon color orange %F
+
+[Desktop Action yellow]
+Name=Yellow
+Name[ru]=Желтый
+Icon=folder-yellow
+Exec=change-folder-icon color yellow %F
+
+[Desktop Action green]
+Name=Green
+Name[ru]=Зеленый
+Icon=folder-green
+Exec=change-folder-icon color green %F
+
+[Desktop Action cyan]
+Name=Cyan
+Name[ru]=Голубой
+Icon=folder-cyan
+Exec=change-folder-icon color cyan %F
+
+[Desktop Action blue]
+Name=Blue
+Name[ru]=Синий
+Icon=folder-blue
+Exec=change-folder-icon color blue %F
+
+[Desktop Action violet]
+Name=Violet
+Name[ru]=Фиолетовый
+Icon=folder-violet
+Exec=change-folder-icon color violet %F
+
+[Desktop Action magenta]
+Name=Magenta
+Name[ru]=Пурпурный
+Icon=folder-magenta
+Exec=change-folder-icon color magenta %F
+
+[Desktop Action brown]
+Name=Brown
+Name[ru]=Коричневый
+Icon=folder-brown
+Exec=change-folder-icon color brown %F
+
+[Desktop Action grey]
+Name=Grey
+Name[ru]=Серый
+Icon=folder-grey
+Exec=change-folder-icon color grey %F

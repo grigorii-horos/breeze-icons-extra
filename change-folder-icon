@@ -1,0 +1,156 @@
+#!/usr/bin/env bash
+
+labels=(
+  -activities
+  -apple
+  -bookmark
+  -cd
+  -cloud
+  -copy-cloud
+  -desktop
+  -development
+  -documents
+  -documents-open
+  -download
+  -download-open
+  -downloads
+  -drag-accept
+  -dropbox
+  -favorites
+  -games
+  -gdrive
+  -git
+  -github
+  -gitlab
+  -gnome
+  -google-drive
+  -image-people
+  -important
+  -java
+  -linux
+  -locked
+  -mail
+  -mail-cloud
+  -mega
+  -meocloud
+  -music
+  -music-open
+  -network
+  -open
+  -owncloud
+  -pcloud
+  -photo
+  -pictures
+  -pictures-open
+  -print
+  -private
+  -public
+  -publicshare
+  -recent
+  -remote
+  -remote-open
+  -saved-search
+  -script
+  -steam
+  -tar
+  -templates
+  -templates-open
+  -text
+  -torrent
+  -unlocked
+  -vbox
+  -video
+  -videos
+  -videos-open
+  -visiting
+  -wifi
+  -wine
+  -yandex-disk
+)
+
+colors=(
+  teal
+  red
+  orange
+  yellow
+  green
+  cyan
+  blue
+  violet
+  magenta
+  brown
+  grey
+)
+
+if (( $# < 3 )); then
+  echo Not enought arguments
+  exit -1
+fi
+
+label=""
+color=""
+
+if [[ -f "$3/.directory" ]]; then
+  if grep -q "Icon=folder" "$3/.directory" ; then
+    iconString=$( grep "Icon=folder" "$3/.directory" )
+
+    for currColor in "${colors[@]}"; do
+      if echo "$iconString" | grep -q "$currColor";then
+        color="$currColor"
+      fi
+    done
+
+    for currLabel in "${labels[@]}"; do
+      if echo "$iconString" | grep -q "$currLabel";then
+        label="$currLabel"
+      fi
+    done
+
+  fi
+
+fi
+
+if [[ "$1" == "label" ]]; then
+  label="$2"
+fi
+if [[ "$1" == "color" ]]; then
+  color="$2"
+fi
+
+iconString="folder"
+
+if [[ ! -z "$color" ]]; then
+  iconString+="-$color"
+fi
+
+if [[ ! -z "$label" ]]; then
+  iconString+="-$label"
+fi
+
+echo $label $color $iconString
+
+shift 2
+
+for i in $@; do
+  if [[ ! -f "$i/.directory" ]]; then
+    echo "[Desktop Entry]" >> "$i/.directory"
+    echo "Icon=$iconString" >> "$i/.directory"
+  else
+    FILE="$i/.directory"
+    FIND=`grep -e "Icon=.*" "$FILE"`
+
+    if [ "$FIND" != "" ]; then
+      sed "s/#*Icon=.*/Icon=$iconString/g" "$FILE" > "/tmp/$$" && cat "/tmp/$$" > "$FILE"
+    else
+      FIND=`grep -e "\[Desktop Entry\]" "$FILE"`
+      
+      if [ "$FIND" != "" ]; then
+        sed "s/#*\[Desktop Entry\]/\[Desktop Entry\]\nIcon=$iconString/g" "$FILE" > "/tmp/$$" && mv "/tmp/$$" "$FILE"
+      else
+        echo >> "$FILE"
+        echo "[Desktop Entry]" >> "$FILE"
+        echo "Icon=$iconString" >> "$FILE"
+      fi
+    fi
+  fi
+done
