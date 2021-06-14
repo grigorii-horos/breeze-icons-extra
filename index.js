@@ -31,9 +31,6 @@ const colors = {
   red: { rotate: 145, saturate: 0.15, darken: 0.2 },
 
   grey: { desaturate: 1, darken: 0.1 },
-
-  black: { negate: "first", desaturate: 1, darken: 0.5 },
-  white: { desaturate: 1, lighten: 1 },
 };
 
 const templates = [
