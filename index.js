@@ -3,12 +3,9 @@
 import Color from "color";
 import memoizee from "memoizee";
 import mkdirp from "mkdirp";
-import { copyFile, readFile, symlink, writeFile } from "node:fs/promises";
+import { readFile, symlink, writeFile } from "node:fs/promises";
 
-const iconsDirs = [
-  "./.icons/icons/places",
-  "./.icons/icons-dark/places",
-];
+const iconsDirs = ["./.icons/icons/places", "./.icons/icons-dark/places"];
 const iconsOutDirs = ["./tmp/icons/places", "./tmp/icons-dark/places"];
 
 const justCopy = ["16", "22"];
@@ -35,8 +32,8 @@ const colors = {
 
   grey: { desaturate: 1 },
 
-  // black: { desaturate: 1, darken: 0.5 },
-  // white: { desaturate: 1, lighten: 1 },
+  black: { negate: "last", desaturate: 1, lighten: 0.9},
+  white: { desaturate: 1, lighten: 1 },
 };
 
 const templates = [
@@ -73,22 +70,40 @@ const templates = [
 
 const links = {
   downloads: "download",
+
   dropbox: "cloud",
-  image: "pictures",
-  images: "pictures",
-  music: "sound",
   onedrive: "cloud",
   owncloud: "cloud",
+  nextcloud: "cloud",
+  "google-drive": "cloud",
+
+  github: "script",
+  gitlab: "script",
+  git: "script",
+
+  image: "pictures",
+  images: "pictures",
   picture: "pictures",
+  photo: "pictures",
+
+  music: "sound",
+
   public: "publicshare",
-  recent: "temp",
+
   remote: "html",
+
   txt: "text",
+
   video: "videos",
 };
 
 const genColor = memoizee((color, initialColor) => {
   let newColor = Color(initialColor);
+
+  if (colors[color].negate && colors[color].negate.includes("first")) {
+    newColor = newColor.negate();
+  }
+
   if (colors[color].rotate) {
     newColor = newColor.rotate(colors[color].rotate);
   }
@@ -107,6 +122,10 @@ const genColor = memoizee((color, initialColor) => {
     newColor = newColor.darken(colors[color].darken);
   }
 
+  if (colors[color].negate && colors[color].negate.includes("last")) {
+    newColor = newColor.negate();
+  }
+
   newColor = newColor.hex();
   return newColor;
 });
@@ -118,7 +137,35 @@ const fn = async (iconsDir, iconsOutDir) => {
     } catch {}
   }
 
+  for (const size of [...justCopy, ...transform]) {
+    for (const [path, target] of Object.entries(links)) {
+      try {
+        await symlink(
+          `folder${target ? `-${target}` : ""}.svg`,
+          `${iconsOutDir}/${size}/folder${path ? `-${path}` : ""}.svg`
+        );
+      } catch {
+        // console.log('Error: ')
+      }
+    }
+  }
+
   for (const color of Object.keys(colors)) {
+    for (const size of [...justCopy, ...transform]) {
+      for (const [path, target] of Object.entries(links)) {
+        try {
+          await symlink(
+            `folder-${color}${target ? `-${target}` : ""}.svg`,
+            `${iconsOutDir}/${size}/folder-${color}${
+              path ? `-${path}` : ""
+            }.svg`
+          );
+        } catch {
+          // console.log('Error: ')
+        }
+      }
+    }
+
     for (const size of justCopy) {
       for (const template of templates) {
         let svg = await readFile(
@@ -130,10 +177,7 @@ const fn = async (iconsDir, iconsOutDir) => {
         svg = svg.replaceAll("fill:currentColor", `fill:${newColor}`);
         svg = svg.replaceAll('fill="currentColor"', `fill="${newColor}"`);
 
-        svg = svg.replaceAll(
-          'fill:#da4453',
-          `fill:${newColor}`
-        );
+        svg = svg.replaceAll("fill:#da4453", `fill:${newColor}`);
 
         await writeFile(
           `${iconsOutDir}/${size}/folder-${color}${
@@ -141,19 +185,6 @@ const fn = async (iconsDir, iconsOutDir) => {
           }.svg`,
           svg
         );
-      }
-
-      for (const [path, target] of Object.entries(links)) {
-        try {
-          await symlink(
-            `folder-${color}${target ? `-${target}` : ""}.svg`,
-            `${iconsOutDir}/${size}/folder-${color}${
-              path ? `-${path}` : ""
-            }.svg`
-          );
-        } catch {
-          console.log('Error')
-        }
       }
     }
 
@@ -180,17 +211,6 @@ const fn = async (iconsDir, iconsOutDir) => {
           }.svg`,
           svg
         );
-      }
-
-      for (const [path, target] of Object.entries(links)) {
-        try {
-          await symlink(
-            `folder-${color}${target ? `-${target}` : ""}.svg`,
-            `${iconsOutDir}/${size}/folder-${color}${
-              path ? `-${path}` : ""
-            }.svg`
-          );
-        } catch {}
       }
     }
   }
