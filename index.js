@@ -66,6 +66,11 @@ const templates = [
   "",
 ];
 
+const copies = {
+  "folder-network-workgroup": "network-workgroup",
+  "folder-user-home": "user-home",
+};
+
 const links = {
   downloads: "download",
 
@@ -93,10 +98,10 @@ const links = {
   txt: "text",
 
   video: "videos",
-};
 
-const copies = {
-  "folder-network-workgroup": "network-workgroup",
+  home: "user-home",
+
+  recent: "temp",
 };
 
 const genColor = memoizee((color, initialColor) => {
