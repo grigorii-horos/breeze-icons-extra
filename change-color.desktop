@@ -3,7 +3,7 @@ Type=Service
 Encoding=UTF-8
 Version=2.0.3
 ServiceTypes=KonqPopupMenu/Plugin,inode/directory
-Actions=red;orange;brown;yellow;green;teal;cyan;blue;violet;magenta;_SEPARATOR_;grey;_SEPARATOR_;noColor;
+Actions=red;orange;brown;yellow;green;cyan;blue;violet;_SEPARATOR_;grey;_SEPARATOR_;noColor;
 X-KDE-Priority=TopLevel
 X-KDE-StartupNotify=false
 Icon=folder-red
@@ -14,70 +14,58 @@ X-KDE-Submenu[ru]=Сменить цвет
 Name=No Color
 Name[ru]=No Color
 Icon=folder
-Exec=change-folder-icon color "" %F
-
-[Desktop Action teal]
-Name=Teal
-Name[ru]=Бирюзовый
-Icon=folder-teal
-Exec=change-folder-icon color teal %F
+Exec=change-folder-icon color "" %U
 
 [Desktop Action red]
 Name=Red
 Name[ru]=Красный
 Icon=folder-red
-Exec=change-folder-icon color red %F
+Exec=change-folder-icon color red %U
 
 [Desktop Action orange]
 Name=Orange
 Name[ru]=Оранжевый
 Icon=folder-orange
-Exec=change-folder-icon color orange %F
+Exec=change-folder-icon color orange %U
 
 [Desktop Action yellow]
 Name=Yellow
 Name[ru]=Желтый
 Icon=folder-yellow
-Exec=change-folder-icon color yellow %F
+Exec=change-folder-icon color yellow %U
 
 [Desktop Action green]
 Name=Green
 Name[ru]=Зеленый
 Icon=folder-green
-Exec=change-folder-icon color green %F
+Exec=change-folder-icon color green %U
 
 [Desktop Action cyan]
 Name=Cyan
 Name[ru]=Голубой
 Icon=folder-cyan
-Exec=change-folder-icon color cyan %F
+Exec=change-folder-icon color cyan %U
 
 [Desktop Action blue]
 Name=Blue
 Name[ru]=Синий
 Icon=folder-blue
-Exec=change-folder-icon color blue %F
+Exec=change-folder-icon color blue %U
 
 [Desktop Action violet]
 Name=Violet
 Name[ru]=Фиолетовый
 Icon=folder-violet
-Exec=change-folder-icon color violet %F
-
-[Desktop Action magenta]
-Name=Magenta
-Name[ru]=Пурпурный
-Icon=folder-magenta
-Exec=change-folder-icon color magenta %F
+Exec=change-folder-icon color violet %U
 
 [Desktop Action brown]
 Name=Brown
 Name[ru]=Коричневый
 Icon=folder-brown
-Exec=change-folder-icon color brown %F
+Exec=change-folder-icon color brown %U
 
 [Desktop Action grey]
 Name=Grey
 Name[ru]=Серый
 Icon=folder-grey
-Exec=change-folder-icon color grey %F
+Exec=change-folder-icon color grey %U

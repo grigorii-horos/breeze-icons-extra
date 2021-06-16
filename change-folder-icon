@@ -90,53 +90,58 @@ fi
 label=""
 color=""
 
-if [[ -f "$3/.directory" ]]; then
-  if grep -q "Icon=folder" "$3/.directory" ; then
-    iconString=$( grep "Icon=folder" "$3/.directory" )
-
-    for currColor in "${colors[@]}"; do
-      if echo "$iconString" | grep -q -- "$currColor";then
-        color="$currColor"
-      fi
-    done
-
-    for currLabel in "${labels[@]}"; do
-      if echo "$iconString" | grep -q -- "$currLabel";then
-        label="$currLabel"
-      fi
-    done
-
-  fi
-
-fi
-
-if [[ "$1" == "label" ]]; then
-  label="$2"
-fi
-if [[ "$1" == "color" ]]; then
-  color="$2"
-fi
-
-iconString="folder"
-
-if [[ ! -z "$color" ]]; then
-  iconString+="-$color"
-fi
-
-if [[ ! -z "$label" ]]; then
-  iconString+="-$label"
-fi
-
-echo $label $color $iconString
+action="$1"
+action_value="$2"
 
 shift 2
 
-for i in $@; do
-  if [[ ! -f "$i/.directory" ]]; then
-    echo "[Desktop Entry]" >> "$i/.directory"
-    echo "Icon=$iconString" >> "$i/.directory"
+for i in "$@"; do
+
+  if [[ -f "${i}/.directory" ]]; then
+    if grep -q "Icon=folder" "${i}/.directory" ; then
+      iconString=$( grep "Icon=folder" "${i}/.directory" )
+
+      for currColor in "${colors[@]}"; do
+        if echo "$iconString" | grep -q -- "$currColor";then
+          color="$currColor"
+        fi
+      done
+
+      for currLabel in "${labels[@]}"; do
+        if echo "$iconString" | grep -q -- "$currLabel";then
+          label="$currLabel"
+        fi
+      done
+
+    fi
+  fi
+
+  if [[ "$action" == "label" ]]; then
+    label="$action_value"
+  fi
+
+  if [[ "$action" == "color" ]]; then
+    color="$action_value"
+  fi
+
+  iconString="folder"
+
+  if [[ ! -z "$color" ]]; then
+    iconString+="-$color"
+  fi
+
+  if [[ ! -z "$label" ]]; then
+    iconString+="-$label"
+  fi
+
+  echo $label $color $iconString
+  echo "${i}/.directory"
+  if [[ ! -f "${i}/.directory" ]]; then
+    echo -n "" > "${i}/.directory"
+    echo "[Desktop Entry]" >> "${i}/.directory"
+    echo "Icon=$iconString" >> "${i}/.directory"
   else
-    FILE="$i/.directory"
+    FILE="${i}/.directory"
     FIND=`grep -e "Icon=.*" "$FILE"`
 
     if [ "$FIND" != "" ]; then

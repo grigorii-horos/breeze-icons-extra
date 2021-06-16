@@ -16,8 +16,7 @@ const basecolor = "#3daee9";
 const colors = {
   blue: {},
 
-  cyan: { rotate: 345, saturate: 0.2, darken: 0.2 },
-  teal: { rotate: 340, desaturate: 0.3, darken: 0.15 },
+  cyan: { rotate: 340, saturate: 0.25, darken: 0.18 },
 
   green: { rotate: 300, desaturate: 0.3, darken: 0.2 },
 
@@ -25,47 +24,12 @@ const colors = {
   orange: { rotate: 190, saturate: 0.5, darken: 0.15 },
   brown: { rotate: 190, desaturate: 0.3, darken: 0.1 },
 
-  violet: { rotate: 80, desaturate: 0.1, darken: 0 },
-  magenta: { rotate: 110, saturate: 0.25, darken: 0.3 },
+  violet: { rotate: 100, saturate: 0.25, darken: 0.3 },
 
   red: { rotate: 145, saturate: 0.15, darken: 0.2 },
 
   grey: { desaturate: 1, darken: 0.1 },
 };
-
-const templates = [
-  "activities",
-  "bookmark",
-  "cloud",
-  "development",
-  "documents",
-  "download",
-  "favorites",
-  "games",
-  "gdrive",
-  "html",
-  "image-people",
-  "important",
-  "locked",
-  "mail",
-  "network",
-  "open",
-  "pictures",
-  "print",
-  "publicshare",
-  "root",
-  "script",
-  "sound",
-  "tar",
-  "templates",
-  "temp",
-  "text",
-  "unlocked",
-  "videos",
-  "network-workgroup",
-  "user-home",
-  "",
-];
 
 const copies = {
   "network-workgroup": "folder-network-workgroup",
@@ -104,6 +68,39 @@ const links = {
 
   recent: "temp",
 };
+
+const templates = [
+  "activities",
+  "bookmark",
+  "cloud",
+  "development",
+  "documents",
+  "download",
+  "favorites",
+  "games",
+  "gdrive",
+  "html",
+  "image-people",
+  "important",
+  "locked",
+  "mail",
+  "network",
+  "open",
+  "pictures",
+  "print",
+  "publicshare",
+  "root",
+  "script",
+  "sound",
+  "tar",
+  "templates",
+  "temp",
+  "text",
+  "unlocked",
+  "videos",
+  ...Object.keys(copies),
+  "",
+];
 
 const genColor = memoizee((color, initialColor) => {
   let newColor = Color(initialColor);
@@ -152,7 +149,7 @@ const fn = async (iconsDir, iconsOutDir) => {
           `${iconsDir}/${size}/${path}.svg`,
           `${iconsDir}/${size}/${target}.svg`
         );
-      } catch (error){
+      } catch (error) {
         console.log("Error:", error);
       }
     }
