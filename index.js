@@ -63,12 +63,13 @@ const templates = [
   "unlocked",
   "videos",
   "network-workgroup",
+  "user-home",
   "",
 ];
 
 const copies = {
-  "folder-network-workgroup": "network-workgroup",
-  "folder-user-home": "user-home",
+  "network-workgroup": "folder-network-workgroup",
+  "user-home": "folder-user-home",
 };
 
 const links = {
@@ -145,6 +146,17 @@ const fn = async (iconsDir, iconsOutDir) => {
   }
 
   for (const size of [...justCopy, ...transform]) {
+    for (const [path, target] of Object.entries(copies)) {
+      try {
+        await copyFile(
+          `${iconsDir}/${size}/${path}.svg`,
+          `${iconsDir}/${size}/${target}.svg`
+        );
+      } catch (error){
+        console.log("Error:", error);
+      }
+    }
+
     for (const [path, target] of Object.entries(links)) {
       try {
         await symlink(
@@ -153,16 +165,6 @@ const fn = async (iconsDir, iconsOutDir) => {
         );
       } catch {
         // console.log('Error: ')
-      }
-    }
-    for (const [path, target] of Object.entries(copies)) {
-      try {
-        await copyFile(
-          `${iconsDir}/${size}/${target}.svg`,
-          `${iconsDir}/${size}/${path}.svg`
-        );
-      } catch {
-        // console.log("Error:", error);
       }
     }
   }
