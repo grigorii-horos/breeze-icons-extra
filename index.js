@@ -16,34 +16,23 @@ const iconSizes = [...smallIconSizes, ...largeIconSizes];
 const basecolor = "#3daee9";
 
 const colors = {
-  blue: {},
-  cyan: { rotate: 340, saturate: 0.15, darken: 0.2 },
-  teal: { rotate: 325, desaturate: 0.3, darken: 0.15 },
+  blue: { rotate: 10, saturate: 0.15, darken: 0.2 },
+  cyan: { rotate: 350, saturate: 0.15, darken: 0.2 },
+  teal: { rotate: 325, desaturate: 0.2, darken: 0.15 },
 
-  green: { rotate: 300, desaturate: 0.1, darken: 0.2 },
+  green: { rotate: 290, desaturate: 0.2, darken: 0.25 },
   yellow: { rotate: 210, saturate: 0.15, darken: 0.1 },
-  orange: { rotate: 190, saturate: 0.5, darken: 0.15 },
+  orange: { rotate: 180, saturate: 0.5, darken: 0.15 },
 
   red: { rotate: 145, saturate: 0.15, darken: 0.2 },
   violet: { rotate: 80, desaturate: 0, darken: 0 },
   magenta: { rotate: 120, saturate: 0.25, darken: 0.3 },
 
-  brown: { rotate: 210, desaturate: 0.7, darken: 0.15 },
-  "grey-cyan": { rotate: 330, desaturate: 0.7, darken: 0.15 },
-  "grey-violet": { rotate: 90, desaturate: 0.7, darken: 0.15 },
   grey: { desaturate: 1, darken: 0.1 },
 };
 
 const links = {
   downloads: "download",
-  dropbox: "cloud",
-  onedrive: "cloud",
-  owncloud: "cloud",
-  nextcloud: "cloud",
-  "google-drive": "cloud",
-  github: "script",
-  gitlab: "script",
-  git: "script",
   image: "pictures",
   images: "pictures",
   picture: "pictures",
