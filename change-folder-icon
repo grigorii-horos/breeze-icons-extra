@@ -2,80 +2,45 @@
 
 labels=(
   activities
-  apple
   bookmark
-  cd
   cloud
-  copy-cloud
-  desktop
   development
   documents
-  documents-open
   download
-  download-open
-  downloads
-  drag-accept
-  dropbox
   favorites
   games
   gdrive
-  git
-  github
-  gitlab
-  gnome
-  google-drive
+  html
   image-people
   important
-  java
-  linux
   locked
   mail
-  mail-cloud
-  mega
-  meocloud
-  music
-  music-open
   network
   open
-  owncloud
-  pcloud
-  photo
   pictures
-  pictures-open
   print
-  private
-  public
   publicshare
-  recent
-  remote
-  remote-open
-  saved-search
+  root
   script
-  steam
+  sound
   tar
   templates
-  templates-open
+  temp
   text
-  torrent
   unlocked
-  vbox
-  video
   videos
-  videos-open
-  visiting
-  wifi
-  wine
-  yandex-disk
+  network-workgroup
+  user-home
 )
 
 colors=(
-  teal
-  red
-  orange
-  yellow
-  green
-  cyan
   blue
+  cyan
+  teal
+  green
+  yellow
+  orange
+  red
   violet
   magenta
   brown
