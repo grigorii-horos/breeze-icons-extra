@@ -37,13 +37,19 @@ colors=(
   blue
   cyan
   teal
+
   green
   yellow
   orange
+
   red
   violet
   magenta
+
   brown
+  grey-cyan
+  grey-violet
+
   grey
 )
 
