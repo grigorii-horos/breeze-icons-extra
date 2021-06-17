@@ -16,17 +16,14 @@ const iconSizes = [...smallIconSizes, ...largeIconSizes];
 const basecolor = "#3daee9";
 
 const colors = {
-  blue: { rotate: 10, saturate: 0.15, darken: 0.2 },
-  cyan: { rotate: 350, saturate: 0.15, darken: 0.2 },
-  teal: { rotate: 325, desaturate: 0.2, darken: 0.15 },
+  blue: { rotate: 15, saturate: 0.2, darken: 0.05 },
+  cyan: { rotate: 340, saturate: 0.2, darken: 0.2 },
 
-  green: { rotate: 290, desaturate: 0.2, darken: 0.25 },
-  yellow: { rotate: 210, saturate: 0.15, darken: 0.1 },
-  orange: { rotate: 180, saturate: 0.5, darken: 0.15 },
+  green: { rotate: 275, desaturate: 0.3, darken: 0.2 },
+  yellow: { rotate: 195, saturate: 0.1, darken: 0.05 },
 
-  red: { rotate: 145, saturate: 0.15, darken: 0.2 },
-  violet: { rotate: 80, desaturate: 0, darken: 0 },
-  magenta: { rotate: 120, saturate: 0.25, darken: 0.3 },
+  red: { rotate: 155, saturate: 0, darken: 0.1 },
+  violet: { rotate: 110, saturate: 0.25, darken: 0.3 },
 
   grey: { desaturate: 1, darken: 0.1 },
 };
