@@ -1,7 +1,4 @@
-/* eslint-disable no-await-in-loop */
-/* eslint-disable no-restricted-syntax */
-import Color from "color";
-import memoizee from "memoizee";
+/* eslint-disable no-await-in-loop, no-restricted-syntax */
 import { readFile, symlink, unlink, writeFile } from "node:fs/promises";
 
 const iconsDirs = [
@@ -13,19 +10,22 @@ const smallIconSizes = ["16", "22"];
 const largeIconSizes = ["32", "48", "64", "96"];
 const iconSizes = [...smallIconSizes, ...largeIconSizes];
 
-const basecolor = "#3daee9";
+const baseColors = ["#3daee9", "#6cc1ef", "#147eb8", "#1272a5"];
 
 const colors = {
-  blue: { rotate: 15, saturate: 0.2, darken: 0.05 },
-  cyan: { rotate: 340, saturate: 0.2, darken: 0.2 },
+  blue: ["#4183d7", "#5b94df", "#2059a3"],
+  cyan: ["#21bbd7", "#3dc8e1", "#13788a"],
 
-  green: { rotate: 275, desaturate: 0.3, darken: 0.2 },
-  yellow: { rotate: 195, saturate: 0.1, darken: 0.05 },
+  green: ["#3bad7e", "#45cc87", "#069061"],
+  yellow: ["#f2cb40", "#f5d76e", "#a77403"],
 
-  red: { rotate: 155, saturate: 0, darken: 0.1 },
-  violet: { rotate: 110, saturate: 0.25, darken: 0.3 },
+  red: ["#eb0a42", "#f62459", "#9a052a"],
+  violet: ["#8e44ad", "#9d52bd", "#693081"],
 
-  grey: { desaturate: 1, darken: 0.1 },
+  orange: ["#f89406", "#faa938", "#a3660d"],
+  brown: ["#8b6039", "#996e45", "#664629"],
+
+  grey: ["#a7afb4", "#bdc3c7", "#6e6e6e"],
 };
 
 const links = {
@@ -85,48 +85,6 @@ const templates = [
   ]),
 ];
 
-const genColor = memoizee((color, initialColor) => {
-  if (
-    initialColor === "#fff" ||
-    initialColor === "#FFF" ||
-    initialColor === "#FFFFFF" ||
-    initialColor === "#ffffff"
-  ) {
-    return initialColor;
-  }
-
-  let newColor = Color(initialColor);
-
-  if (colors[color].negate && colors[color].negate.includes("first")) {
-    newColor = newColor.negate();
-  }
-
-  if (colors[color].rotate) {
-    newColor = newColor.rotate(colors[color].rotate);
-  }
-
-  if (colors[color].saturate) {
-    newColor = newColor.saturate(colors[color].saturate);
-  }
-  if (colors[color].desaturate) {
-    newColor = newColor.desaturate(colors[color].desaturate);
-  }
-
-  if (colors[color].lighten) {
-    newColor = newColor.lighten(colors[color].lighten);
-  }
-  if (colors[color].darken) {
-    newColor = newColor.darken(colors[color].darken);
-  }
-
-  if (colors[color].negate && colors[color].negate.includes("last")) {
-    newColor = newColor.negate();
-  }
-
-  newColor = newColor.hex();
-  return newColor;
-});
-
 const fn = async (iconsDir, iconsOutDir) => {
   for (const size of iconSizes) {
     for (const [path, target] of Object.entries(linksCopies)) {
@@ -150,7 +108,7 @@ const fn = async (iconsDir, iconsOutDir) => {
           `${iconsDir}/${size}/folder${template ? `-${template}` : ""}.svg`,
           "UTF-8"
         );
-        const newColor = genColor(color, basecolor);
+        const newColor = colors[color][0];
 
         svg = svg.replaceAll("fill:currentColor", `fill:${newColor}`);
         svg = svg.replaceAll('fill="currentColor"', `fill="${newColor}"`);
@@ -173,15 +131,10 @@ const fn = async (iconsDir, iconsOutDir) => {
           "UTF-8"
         );
 
-        const colorsInFile = [...svg.matchAll(/#[\da-f]{3,6}/gi)].map(
-          (item) => item[0]
-        );
-
-        for (const colorInFile of colorsInFile) {
-          const newColor = genColor(color, colorInFile);
-
-          svg = svg.replaceAll(colorInFile, newColor);
-        }
+        svg = svg.replaceAll(baseColors[0], colors[color][0]);
+        svg = svg.replaceAll(baseColors[1], colors[color][1]);
+        svg = svg.replaceAll(baseColors[2], colors[color][2]);
+        svg = svg.replaceAll(baseColors[3], colors[color][2]);
 
         await writeFile(
           `${iconsOutDir}/${size}/folder-${color}${
@@ -191,6 +144,7 @@ const fn = async (iconsDir, iconsOutDir) => {
         );
       }
     }
+
 
     for (const size of iconSizes) {
       for (const [path, target] of Object.entries(links)) {
