@@ -14,7 +14,9 @@ cp -Rp --reflink=auto ./.icons ./breeze-icons
 
 sed -i -e 's/5\.82/5\.81/g' ./breeze-icons/CMakeLists.txt
 sed -i -e 's/5\.84/5\.82/g' ./breeze-icons/CMakeLists.txt
+sed -i -e 's/5\.85/5\.82/g' ./breeze-icons/CMakeLists.txt
 sed -i -e 's/5\.86/5\.84/g' ./breeze-icons/CMakeLists.txt
+sed -i -e 's/5\.87/5\.84/g' ./breeze-icons/CMakeLists.txt
 
 npm ci
 node index.js
