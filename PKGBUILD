@@ -27,6 +27,13 @@ prepare() {
   bash ./build.sh
 }
 
+pkgver(){
+  cd ../.icons
+  _ver="$(cat CMakeLists.txt | grep -m1 '(ECM' | grep -o "[[:digit:]]*" | paste -sd'.')"
+  echo "${_ver}.r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
+}
+
+
 build() {
   cd ../
 
