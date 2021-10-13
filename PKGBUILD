@@ -2,7 +2,7 @@
 # Contributor: FadeMind <fademind@gmail.com>
 
 pkgname=('breeze-icons-extra' 'breeze-icons-extra-light' 'breeze-icons-extra-dark')
-pkgver=5.85.0
+pkgver=5.87.1
 pkgrel=1
 pkgdesc="Breeze icon themes for KDE Plasma. Extra version"
 arch=('any')
@@ -10,13 +10,13 @@ url='https://github.com/grigorii-horos/breeze-icons-extra'
 license=('LGPL')
 groups=('kf5')
 makedepends=(
-              'extra-cmake-modules'
-              'git'
-              'qt5-base'
-              'nodejs'
-              'npm'
-              'parallel'
-            )
+  'extra-cmake-modules'
+  'git'
+  'qt5-base'
+  'nodejs'
+  'npm'
+  'parallel'
+)
 
 source=()
 sha256sums=()
