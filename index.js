@@ -172,7 +172,7 @@ const fn = async (iconsDir, iconsOutDir) => {
             `${iconsOutDir}/${size}/folder-${color}-${path}.svg`
           );
       } catch (err) {
-         console.log(err)
+         // console.log(err)
       }
       }
     }

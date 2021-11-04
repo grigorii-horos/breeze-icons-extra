@@ -10,7 +10,7 @@ fi
 
 rm -rf ./breeze-icons
 
-cp -Rp --reflink=auto ./.icons ./breeze-icons
+cp -Rpf --reflink=auto ./.icons/ ./breeze-icons
 
 sed -i -e 's/5\.82/5\.81/g' ./breeze-icons/CMakeLists.txt
 sed -i -e 's/5\.84/5\.82/g' ./breeze-icons/CMakeLists.txt
