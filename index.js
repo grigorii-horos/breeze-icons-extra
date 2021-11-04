@@ -90,12 +90,19 @@ const fn = async (iconsDir, iconsOutDir) => {
     for (const [path, target] of Object.entries(linksCopies)) {
       try {
         await unlink(`${iconsDir}/${size}/folder-${path}.svg`);
- 
+       } catch (err){
+         // console.log(err)
+       }
+
+       try {
         await symlink(
           `${target}.svg`,
           `${iconsOutDir}/${size}/folder-${path}.svg`
         );
-      } catch {}
+      } catch (err) {
+         // console.log(err)
+
+      }
     }
   }
 
@@ -120,7 +127,9 @@ const fn = async (iconsDir, iconsOutDir) => {
             }.svg`,
             svg
           );
-       }catch {}
+      } catch (err) {
+         // console.log(err)
+      }
       }
     }
 
@@ -143,7 +152,9 @@ const fn = async (iconsDir, iconsOutDir) => {
             }.svg`,
             svg
           );
-      } catch {}
+      } catch (err) {
+         // console.log(err)
+      }
       }
     }
 
@@ -151,12 +162,18 @@ const fn = async (iconsDir, iconsOutDir) => {
       for (const [path, target] of Object.entries(links)) {
         try {
           await unlink(`${iconsOutDir}/${size}/folder-${color}-${path}.svg`);
+      } catch (err) {
+         // console.log(err)
+      }
 
+        try {
           await symlink(
             `folder-${color}-${target}.svg`,
             `${iconsOutDir}/${size}/folder-${color}-${path}.svg`
           );
-        } catch {}
+      } catch (err) {
+         console.log(err)
+      }
       }
     }
   }
