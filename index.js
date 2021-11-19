@@ -17,6 +17,7 @@ const iconsOutDirs = [
 const smallIconSizes = [
 "16", 
 "22", 
+"24", 
 ];
 const largeIconSizes = ["32", "48", "64", "96"];
 

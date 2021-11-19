@@ -20,9 +20,6 @@ sed -i -e 's/5\.87/5\.84/g' ./breeze-icons/CMakeLists.txt
 sed -i -e 's/5\.88/5\.84/g' ./breeze-icons/CMakeLists.txt
 sed -i -e 's/5\.89/5\.84/g' ./breeze-icons/CMakeLists.txt
 
-npm ci
-node index.js
-
 cd ./breeze-icons/icons
 python ../generate-24px-versions.py ./
 
@@ -30,6 +27,9 @@ cd ../icons-dark
 python ../generate-24px-versions.py ./
 
 cd ..
+
+npm ci
+node index.js
 
 # find -name '*.svg' -type f | parallel -j "$(nproc)" ../node_modules/.bin/svgo --config ../config.cjs --input '{}' --output '{}'
 
