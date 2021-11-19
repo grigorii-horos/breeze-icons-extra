@@ -1,13 +1,25 @@
 /* eslint-disable no-await-in-loop, no-restricted-syntax */
-import { readFile, symlink, unlink, writeFile } from "node:fs/promises";
+import { readFile, symlink, unlink, writeFile, copyFile } from "node:fs/promises";
+import {  existsSync } from "node:fs";
+import mkdirp from 'mkdirp'
+
 
 const iconsDirs = [
   "./breeze-icons/icons/places",
   "./breeze-icons/icons-dark/places",
 ];
 
-const smallIconSizes = ["16", "22"];
+const iconsOutDirs = [
+  "./breeze-icons/icons/places",
+  "./breeze-icons/icons-dark/places",
+];
+
+const smallIconSizes = [
+"16", 
+"22", 
+];
 const largeIconSizes = ["32", "48", "64", "96"];
+
 const iconSizes = [...smallIconSizes, ...largeIconSizes];
 
 const baseColors = ["#3daee9", "#6cc1ef", "#147eb8", "#1272a5"];
@@ -87,9 +99,17 @@ const templates = [
 
 const fn = async (iconsDir, iconsOutDir) => {
   for (const size of iconSizes) {
+    if(!existsSync(`${iconsDir}/${size}`)){
+      continue;
+    }
+
+    try{
+      await mkdirp(`${iconsOutDir}/${size}`)
+    } catch{}
+
     for (const [path, target] of Object.entries(linksCopies)) {
       try {
-        await unlink(`${iconsDir}/${size}/folder-${path}.svg`);
+        await unlink(`${iconsOutDir}/${size}/folder-${path}.svg`);
        } catch (err){
          // console.log(err)
        }
@@ -134,6 +154,10 @@ const fn = async (iconsDir, iconsOutDir) => {
     }
 
     for (const size of largeIconSizes) {
+      if(!existsSync(`${iconsDir}/${size}`)){
+        continue;
+      }
+
       for (const template of templates) {
         try{
           let svg = await readFile(
@@ -179,5 +203,5 @@ const fn = async (iconsDir, iconsOutDir) => {
   }
 };
 
-fn(iconsDirs[0], iconsDirs[0]);
-fn(iconsDirs[1], iconsDirs[1]);
+fn(iconsDirs[0], iconsOutDirs[0]);
+fn(iconsDirs[1], iconsOutDirs[1]);

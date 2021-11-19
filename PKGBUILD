@@ -43,7 +43,8 @@ build() {
     -DCMAKE_INSTALL_PREFIX=/usr \
     -DBUILD_TESTING=OFF \
     -DBINARY_ICONS_RESOURCE=ON \
-    -DWITH_ICON_GENERATION=OFF
+    -DWITH_ICON_GENERATION=OFF \
+    -DCMAKE_MAKE_PROGRAM=/usr/bin/make 
 
   make
 
@@ -57,6 +58,7 @@ package_breeze-icons-extra() {
     'breeze-icons-extra-light: Install one of this packages'
     'breeze-icons-extra-dark: Install one of this packages'
   )
+
   mkdir -p "${pkgdir}/usr/bin/" "${pkgdir}/usr/share/kservices5/ServiceMenus/"
   install -D --mode=644 ../change-label.desktop "${pkgdir}/usr/share/kservices5/ServiceMenus/"
   install -D --mode=644 ../change-color.desktop "${pkgdir}/usr/share/kservices5/ServiceMenus/"
@@ -66,6 +68,7 @@ package_breeze-icons-extra() {
 package_breeze-icons-extra-light() {
   provides=('breeze-icons-extra-light')
   depends=('breeze-icons-extra')
+
   mkdir -p "${pkgdir}/usr/share/icons/breeze"
   cp -Rp ./install-dir/usr/share/icons/breeze/. "${pkgdir}/usr/share/icons/breeze/"
 }
@@ -73,6 +76,7 @@ package_breeze-icons-extra-light() {
 package_breeze-icons-extra-dark() {
   provides=('breeze-icons-extra-dark')
   depends=('breeze-icons-extra')
+
   mkdir -p "${pkgdir}/usr/share/icons/breeze-dark"
   cp -Rp ./install-dir/usr/share/icons/breeze-dark/. "${pkgdir}/usr/share/icons/breeze-dark/"
 }

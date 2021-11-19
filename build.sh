@@ -24,8 +24,8 @@ npm ci
 node index.js
 
 cd ./breeze-icons/icons
-
 python ../generate-24px-versions.py ./
+
 cd ../icons-dark
 python ../generate-24px-versions.py ./
 
@@ -33,9 +33,8 @@ cd ..
 
 # find -name '*.svg' -type f | parallel -j "$(nproc)" ../node_modules/.bin/svgo --config ../config.cjs --input '{}' --output '{}'
 
-find -name '*.svg' -type f | while read line; do
-    gzip -9 -f -S z "$line"
-done
+find -name '*.svg' -type f | parallel -j "$(nproc)" gzip -9 -f -S z "{}"
+
 
 find -name '*.svg' -type l | while read line; do
     ln -sf $(readlink $line)z "${line}z"
