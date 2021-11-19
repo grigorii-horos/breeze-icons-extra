@@ -137,9 +137,13 @@ const fn = async (iconsDir, iconsOutDir) => {
           );
           const newColor = colors[color][0];
   
-          svg = svg.replaceAll("fill:currentColor", `fill:${newColor}`);
-          svg = svg.replaceAll('fill="currentColor"', `fill="${newColor}"`);
-  
+          svg = svg.replaceAll('#232629', colors[color][0]);
+          svg = svg.replaceAll('#eff0f1', colors[color][0]);
+
+
+          svg = svg.replaceAll("ColorScheme-Highlight", `ColorScheme-Highlight-new`);
+          svg = svg.replaceAll("ColorScheme-Text", `ColorScheme-Text-new`);
+
           svg = svg.replaceAll("fill:#da4453", `fill:${newColor}`);
   
           await writeFile(
@@ -166,6 +170,11 @@ const fn = async (iconsDir, iconsOutDir) => {
             "UTF-8"
           );
   
+          svg = svg.replaceAll("ColorScheme-Highlight", `ColorScheme-Highlight-new`);
+          svg = svg.replaceAll("ColorScheme-Text", `ColorScheme-Text-new`);
+          // svg = svg.replaceAll("fill:currentColor", `fill:${colors[color][0]}`);
+          // svg = svg.replaceAll('fill="currentColor"', `fill="${colors[color][0]}"`);
+
           svg = svg.replaceAll(baseColors[0], colors[color][0]);
           svg = svg.replaceAll(baseColors[1], colors[color][1]);
           svg = svg.replaceAll(baseColors[2], colors[color][2]);
