@@ -26,10 +26,12 @@ python ../generate-24px-versions.py ./
 cd ../icons-dark
 python ../generate-24px-versions.py ./
 
-cd ..
+cd ../..
 
 npm ci
 node index.js
+
+cd ./breeze-icons
 
 # find -name '*.svg' -type f | parallel -j "$(nproc)" ../node_modules/.bin/svgo --config ../config.cjs --input '{}' --output '{}'
 
