@@ -33,7 +33,7 @@ node index.js
 
 cd ./breeze-icons
 
-# find -name '*.svg' -type f | parallel -j "$(nproc)" ../node_modules/.bin/svgo --config ../config.cjs --input '{}' --output '{}'
+find -name '*.svg' -type f | parallel -j "$(nproc)" ../node_modules/.bin/svgo --config ../config.cjs --input '{}' --output '{}'
 
 find -name '*.svg' -type f | parallel -j "$(nproc)" gzip -9 -f -S z "{}"
 
