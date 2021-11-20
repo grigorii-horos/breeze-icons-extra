@@ -43,8 +43,13 @@ find -name '*.svg' -type l | while read line; do
     rm $line
 done
 
+sed -i -e 's/\.svgzz$/\.svgz/g' ./icons/index.theme
+sed -i -e 's/\.svgzz$/\.svgz/g' ./icons-dark/index.theme
 
-sed -i -e 's/\.svg/\.svgz/g' ./icons/index.theme
-sed -i -e 's/\.svg/\.svgz/g' ./icons-dark/index.theme
+sed -i -e 's/\.svgzz$/\.svgz/g' ./CMakeLists.txt
 
-sed -i -e 's/\.svg/\.svgz/g' ./CMakeLists.txt
+
+sed -i -e 's/\.svg$/\.svgz/g' ./icons/index.theme
+sed -i -e 's/\.svg$/\.svgz/g' ./icons-dark/index.theme
+
+sed -i -e 's/\.svg$/\.svgz/g' ./CMakeLists.txt
