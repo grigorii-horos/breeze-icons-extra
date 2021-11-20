@@ -3,7 +3,7 @@ Type=Service
 Encoding=UTF-8
 Version=2.0.3
 ServiceTypes=KonqPopupMenu/Plugin,inode/directory
-Actions=red;yellow;green;cyan;blue;violet;_SEPARATOR_;orange;brown;_SEPARATOR_;grey;_SEPARATOR_;noColor;
+Actions=red;yellow;green;cyan;blue;violet;magenta;_SEPARATOR_;orange;brown;_SEPARATOR_;grey;_SEPARATOR_;noColor;
 X-KDE-Priority=TopLevel
 X-KDE-StartupNotify=false
 Icon=folder-red
@@ -52,6 +52,12 @@ Name=Violet
 Name[ru]=Фиолетовый
 Icon=folder-violet
 Exec=change-folder-icon color violet %U
+
+[Desktop Action magenta]
+Name=Magenta
+Name[ru]=Пурпурный
+Icon=folder-magenta
+Exec=change-folder-icon color magenta %U
 
 [Desktop Action orange]
 Name=Orange

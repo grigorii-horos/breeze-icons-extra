@@ -25,22 +25,24 @@ const largeIconSizes = ["32", "48", "64", "96"];
 
 const iconSizes = [...smallIconSizes, ...largeIconSizes];
 
-const baseColors = ["#3daee9", "#6cc1ef", "#147eb8", "#1272a5"];
+const baseColors = ["#3daee9"];
 
 const colors = {
-  blue: ["#4183d7", "#5b94df", "#2059a3", "#1d4f91"],
-  cyan: ["#21bbd7", "#3dc8e1", "#13788a", "#116d7e"],
+  default: ['#3daee9'],
+  blue: ["#4183d7"],
+  cyan: ["#21bbd7"],
 
-  green: ["#3bad7e", "#45cc87", "#069061", "#057f57"],
-  yellow: ["#f2cb40", "#f5d76e", "#a77403", "#916403"],
+  green: ["#3bad7e"],
+  yellow: ["#f2cb40"],
 
-  red: ["#eb0a42", "#f62459", "#9a052a", "#8b0426"],
-  violet: ["#8e44ad", "#9d52bd", "#693081", "#612c77"],
+  red: ["#eb0a42"],
+  violet: ["#8e44ad"],
+  magenta: ["#b5006a"],
 
-  orange: ["#f89406", "#faa938", "#a3660d", "#925c0c"],
-  brown: ["#8b6039", "#996e45", "#664629", "#5b3f24"],
+  orange: ["#f89406"],
+  brown: ["#8b6039"],
 
-  grey: ["#a7afb4", "#bdc3c7", "#6e6e6e", "#636363"],
+  grey: ["#a7afb4"],
 };
 
 const links = {
@@ -150,7 +152,7 @@ const fn = async (iconsDir, iconsOutDir) => {
           svg = svg.replaceAll("fill:#da4453", `fill:${newColor}`);
 
           svg = optimize(svg, {
-            path: `${iconsOutDir}/${size}/folder-${color}${
+            path: `${iconsOutDir}/${size}/folder${color !=='default' ? `-${color}` : ""}${
               template ? `-${template}` : ""
             }.svg`,
             multipass: true,
@@ -158,7 +160,7 @@ const fn = async (iconsDir, iconsOutDir) => {
           }).data;
 
           await writeFile(
-            `${iconsOutDir}/${size}/folder-${color}${
+            `${iconsOutDir}/${size}/folder${color !=='default' ? `-${color}` : ""}${
               template ? `-${template}` : ""
             }.svg`,
             svg
@@ -186,13 +188,12 @@ const fn = async (iconsDir, iconsOutDir) => {
             `ColorScheme-Highlight-new`
           );
           svg = svg.replaceAll("ColorScheme-Text", `ColorScheme-Text-new`);
-          // svg = svg.replaceAll("fill:currentColor", `fill:${colors[color][0]}`);
-          // svg = svg.replaceAll('fill="currentColor"', `fill="${colors[color][0]}"`);
+          svg = svg.replaceAll("fill:#eb0a42", `fill:${colors[color][0]}`);
 
           svg = svg.replaceAll(baseColors[0], colors[color][0]);
-          svg = svg.replaceAll(baseColors[1], colors[color][1]);
-          svg = svg.replaceAll(baseColors[2], colors[color][2]);
-          svg = svg.replaceAll(baseColors[3], colors[color][3]);
+          // svg = svg.replaceAll(baseColors[1], colors[color][1]);
+          // svg = svg.replaceAll(baseColors[2], colors[color][2]);
+          // svg = svg.replaceAll(baseColors[3], colors[color][3]);
           svg = optimize(svg, {
             path: `${iconsOutDir}/${size}/folder-${color}${
               template ? `-${template}` : ""
@@ -202,7 +203,7 @@ const fn = async (iconsDir, iconsOutDir) => {
           }).data;
 
           await writeFile(
-            `${iconsOutDir}/${size}/folder-${color}${
+            `${iconsOutDir}/${size}/folder${color !=='default' ? `-${color}` : ""}${
               template ? `-${template}` : ""
             }.svg`,
             svg
@@ -216,15 +217,15 @@ const fn = async (iconsDir, iconsOutDir) => {
     for (const size of iconSizes) {
       for (const [path, target] of Object.entries(links)) {
         try {
-          await unlink(`${iconsOutDir}/${size}/folder-${color}-${path}.svg`);
+          await unlink(`${iconsOutDir}/${size}/folder${color !=='default' ? `-${color}` : ""}-${path}.svg`);
         } catch {
           // console.log(err)
         }
 
         try {
           await symlink(
-            `folder-${color}-${target}.svg`,
-            `${iconsOutDir}/${size}/folder-${color}-${path}.svg`
+            `folder${color !=='default' ? `-${color}` : ""}-${target}.svg`,
+            `${iconsOutDir}/${size}/folder${color !=='default' ? `-${color}` : ""}-${path}.svg`
           );
         } catch {
           // console.log(err)
