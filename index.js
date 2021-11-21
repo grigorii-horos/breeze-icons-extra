@@ -2,13 +2,11 @@
 import mkdirp from "mkdirp";
 import { existsSync } from "node:fs";
 import {
-  copyFile,
   readFile,
   symlink,
   unlink,
   writeFile,
 } from "node:fs/promises";
-import { optimize } from "svgo";
 
 const iconsDirs = [
   "./breeze-icons/icons/places",
@@ -132,10 +130,6 @@ const fn = async (iconsDir, iconsOutDir) => {
       for (const template of templates) {
         try {
           if (color === "default") {
-            // console.log(
-            //   `${iconsDir}/${size}/folder${template ? `-${template}` : ""}.svg`
-            // );
-
             let svg = await readFile(
               `${iconsDir}/${size}/folder${template ? `-${template}` : ""}.svg`,
               "UTF-8"
@@ -156,28 +150,23 @@ const fn = async (iconsDir, iconsOutDir) => {
             continue;
           }
 
-          if (color === "default") {
-            console.log(
-              `${iconsDir}/${size}/folder${template ? `-${template}` : ""}.svg`
-            );
-          }
-
           let svg = await readFile(
             `${iconsDir}/${size}/folder${template ? `-${template}` : ""}.svg`,
             "UTF-8"
           );
+
           const newColor = colors[color][0];
+          svg = svg.replaceAll("#232629", newColor);
+          svg = svg.replaceAll("#eff0f1", newColor);
 
-          svg = svg.replaceAll("#232629", colors[color][0]);
-          svg = svg.replaceAll("#eff0f1", colors[color][0]);
+          svg = svg.replaceAll("ColorScheme-Text", "ctn");
 
-          svg = optimize(svg, {
-            path: `${iconsOutDir}/${size}/folder-${color}${
-              template ? `-${template}` : ""
-            }.svg`,
-            multipass: true,
-            // plugins: ["convertStyleToAttrs", "convertPathData"],
-          }).data;
+          // svg = optimize(svg, {
+          //   path: `${iconsOutDir}/${size}/folder-${color}${
+          //     template ? `-${template}` : ""
+          //   }.svg`,
+          //   multipass: true,
+          // }).data;
 
           await writeFile(
             `${iconsOutDir}/${size}/folder-${color}${
@@ -225,12 +214,9 @@ const fn = async (iconsDir, iconsOutDir) => {
           );
 
           svg = svg.replaceAll(baseColors[0], colors[color][0]);
-          svg = optimize(svg, {
-            path: `${iconsOutDir}/${size}/folder-${color}${
-              template ? `-${template}` : ""
-            }.svg`,
-            multipass: true,
-          }).data;
+
+          svg = svg.replaceAll("ColorScheme-Highlight", "ctn");
+
 
           await writeFile(
             `${iconsOutDir}/${size}/folder-${color}${
