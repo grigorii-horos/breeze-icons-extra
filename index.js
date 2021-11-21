@@ -193,10 +193,15 @@ const fn = async (iconsDir, iconsOutDir) => {
               "UTF-8"
             );
 
+            // svg = svg.replaceAll(
+            //   `"fill:#5c5c5c"`,
+            //   `"fill:currentColor" class="ColorScheme-Highlight"`
+            // );
             svg = svg.replaceAll(
               `"fill:#eb0a42"`,
               `"fill:currentColor" class="ColorScheme-Highlight"`
             );
+
 
             await writeFile(
               `${iconsOutDir}/${size}/folder${
@@ -215,7 +220,8 @@ const fn = async (iconsDir, iconsOutDir) => {
 
           svg = svg.replaceAll(baseColors[0], colors[color][0]);
 
-          svg = svg.replaceAll("ColorScheme-Highlight", "ctn");
+          svg = svg.replaceAll("ColorScheme-Text", "ctn");
+          svg = svg.replaceAll("ColorScheme-Highlight", "chn");
 
 
           await writeFile(
