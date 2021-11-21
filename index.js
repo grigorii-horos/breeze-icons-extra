@@ -160,13 +160,7 @@ const fn = async (iconsDir, iconsOutDir) => {
           svg = svg.replaceAll("#eff0f1", newColor);
 
           svg = svg.replaceAll("ColorScheme-Text", "ctn");
-
-          // svg = optimize(svg, {
-          //   path: `${iconsOutDir}/${size}/folder-${color}${
-          //     template ? `-${template}` : ""
-          //   }.svg`,
-          //   multipass: true,
-          // }).data;
+          svg = svg.replaceAll('id="current-color-scheme"', "");
 
           await writeFile(
             `${iconsOutDir}/${size}/folder-${color}${
@@ -193,10 +187,6 @@ const fn = async (iconsDir, iconsOutDir) => {
               "UTF-8"
             );
 
-            // svg = svg.replaceAll(
-            //   `"fill:#5c5c5c"`,
-            //   `"fill:currentColor" class="ColorScheme-Highlight"`
-            // );
             svg = svg.replaceAll(
               `"fill:#eb0a42"`,
               `"fill:currentColor" class="ColorScheme-Highlight"`
@@ -222,6 +212,7 @@ const fn = async (iconsDir, iconsOutDir) => {
 
           svg = svg.replaceAll("ColorScheme-Text", "ctn");
           svg = svg.replaceAll("ColorScheme-Highlight", "chn");
+          svg = svg.replaceAll('id="current-color-scheme"', "");
 
 
           await writeFile(
