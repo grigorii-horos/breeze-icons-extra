@@ -8,7 +8,7 @@ else
     git clone --depth 1 https://github.com/KDE/breeze-icons .icons
 fi
 
-rm -rf ./breeze-icons
+# rm -rf ./breeze-icons
 
 cp -Rpf --reflink=auto ./.icons/ ./breeze-icons
 

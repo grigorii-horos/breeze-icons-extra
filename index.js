@@ -23,21 +23,22 @@ const largeIconSizes = ["32", "48", "64", "96"];
 
 const iconSizes = [...smallIconSizes, ...largeIconSizes];
 
-const baseColors = ["#3daee9"];
+const baseColors = ["#3daee9", "#232629"];
 
 const colors = {
-  default: ["#3daee9"],
+  default: ["#3daee9", "#232629"],
 
-  blue: ["#4183d7"],
-  brown: ["#8b6039"],
-  cyan: ["#21bbd7"],
-  green: ["#3bad7e"],
-  grey: ["#a7afb4"],
-  magenta: ["#b5006a"],
-  orange: ["#f89406"],
-  red: ["#eb0a42"],
-  violet: ["#8e44ad"],
-  yellow: ["#f2cb40"],
+  black: ["#333333", "#d1d0d1"],
+  blue: ["#4183d7", "#333659"],
+  brown: ["#8b6039", "#eff0c1"],
+  cyan: ["#21bbd7", "#233639"],
+  green: ["#3bad7e", "#204024"],
+  grey: ["#a7afb4", "#232629"],
+  magenta: ["#b5006a", "#331e39"],
+  orange: ["#f89406", "#433629"],
+  red: ["#eb0a42", "#432629"],
+  violet: ["#8e44ad", "#ffc0f1"],
+  yellow: ["#f2cb40", "#636629"],
 };
 
 const links = {
@@ -53,6 +54,8 @@ const links = {
   video: "videos",
   recent: "temp",
   home: "user-home",
+  network: "network-workgroup",
+
 };
 
 const linksCopies = {
@@ -209,6 +212,7 @@ const fn = async (iconsDir, iconsOutDir) => {
           );
 
           svg = svg.replaceAll(baseColors[0], colors[color][0]);
+          svg = svg.replaceAll(baseColors[1], colors[color][1]);
 
           svg = svg.replaceAll("ColorScheme-Text", "ctn");
           svg = svg.replaceAll("ColorScheme-Highlight", "chn");
