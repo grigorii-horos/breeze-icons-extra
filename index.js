@@ -23,7 +23,7 @@ const largeIconSizes = ["32", "48", "64", "96"];
 
 const iconSizes = [...smallIconSizes, ...largeIconSizes];
 
-const baseColors = ["#3daee9", "#232629"];
+const baseColors = ["#3daee9", "#232629", "#31363b"];
 
 const colors = {
   default: ["#3daee9", "#232629"],
@@ -213,6 +213,7 @@ const fn = async (iconsDir, iconsOutDir) => {
 
           svg = svg.replaceAll(baseColors[0], colors[color][0]);
           svg = svg.replaceAll(baseColors[1], colors[color][1]);
+          svg = svg.replaceAll(baseColors[2], colors[color][1]);
 
           svg = svg.replaceAll("ColorScheme-Text", "ctn");
           svg = svg.replaceAll("ColorScheme-Highlight", "chn");
