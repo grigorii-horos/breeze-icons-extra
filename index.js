@@ -30,14 +30,14 @@ const colors = {
 
   black: ["#333333", "#d1d0d1"],
   blue: ["#4183d7", "#ffffff"],
-  brown: ["#8b6039", "#eff0c1"],
+  brown: ["#8b6039", "#f3f0c6"],
   cyan: ["#21bbd7", "#132629"],
   green: ["#3bad7e", "#183519"],
   grey: ["#a7afb4", "#232629"],
   magenta: ["#b5006a", "#130e19"],
   orange: ["#f89406", "#222000"],
-  red: ["#eb0a42", "#eeffff"],
-  violet: ["#8e44ad", "#ffc0f1"],
+  red: ["#eb0a42", "#f3ffff"],
+  violet: ["#8e44ad", "#ffd0f6"],
   yellow: ["#f2cb40", "#333000"],
 };
 

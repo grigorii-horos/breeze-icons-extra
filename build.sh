@@ -21,6 +21,7 @@ sed -i -e 's/5\.88/5\.84/g' ./breeze-icons/CMakeLists.txt
 sed -i -e 's/5\.89/5\.84/g' ./breeze-icons/CMakeLists.txt
 sed -i -e 's/5\.90/5\.84/g' ./breeze-icons/CMakeLists.txt
 sed -i -e 's/5\.91/5\.84/g' ./breeze-icons/CMakeLists.txt
+sed -i -e 's/5\.92/5\.84/g' ./breeze-icons/CMakeLists.txt
 
 cd ./breeze-icons/icons
 python ../generate-24px-versions.py ./
