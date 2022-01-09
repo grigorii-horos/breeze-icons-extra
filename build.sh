@@ -10,7 +10,7 @@ fi
 
 # rm -rf ./breeze-icons
 
-#cp -Rpf --reflink=auto ./.icons/ ./breeze-icons
+cp -Rpf --reflink=auto ./.icons/ ./breeze-icons
 
 sed -i -e 's/5\.82/5\.81/g' ./breeze-icons/CMakeLists.txt
 sed -i -e 's/5\.84/5\.82/g' ./breeze-icons/CMakeLists.txt
@@ -38,21 +38,15 @@ cd ./breeze-icons
 
 find -name '*.svg' -type f | parallel -j "$(nproc)" ../node_modules/.bin/svgo --config ../config.cjs --input '{}' --output '{}'
 
-find -name '*.svg' -type f | parallel -j "$(nproc)" gzip -9 -f -S z "{}"
+# find -name '*.svg' -type f | parallel -j "$(nproc)" gzip -9 -f -S z "{}"
 
 
 find -name '*.svg' -type l | while read line; do
-    ln -sf $(readlink $line)z "${line}z"
+    ln -sf $(readlink $line) "${line}"
     rm $line
 done
 
-sed -i -e 's/\.svgzz$/\.svgz/g' ./icons/index.theme
-sed -i -e 's/\.svgzz$/\.svgz/g' ./icons-dark/index.theme
+# sed -i -e 's/\.svg$/\.svgz/g' ./icons/index.theme
+# sed -i -e 's/\.svg$/\.svgz/g' ./icons-dark/index.theme
 
-sed -i -e 's/\.svgzz$/\.svgz/g' ./CMakeLists.txt
-
-
-sed -i -e 's/\.svg$/\.svgz/g' ./icons/index.theme
-sed -i -e 's/\.svg$/\.svgz/g' ./icons-dark/index.theme
-
-sed -i -e 's/\.svg$/\.svgz/g' ./CMakeLists.txt
+# sed -i -e 's/\.svg$/\.svgz/g' ./CMakeLists.txt
