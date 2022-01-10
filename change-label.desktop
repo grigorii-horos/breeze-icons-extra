@@ -12,7 +12,6 @@ X-KDE-Submenu[ru]=Сменить метку
 
 [Desktop Action noLabel]
 Name=No Label
-Name[ru]=No Label
 Icon=folder
 Exec=change-folder-icon label "" %U
 
@@ -24,138 +23,115 @@ Exec=change-folder-icon label downloads %U
 
 [Desktop Action templates]
 Name=Templates
-Name[ru]=No Label
 Icon=folder-templates
 Exec=change-folder-icon label templates %U
 
 [Desktop Action public]
 Name=Public
-Name[ru]=No Label
 Icon=folder-public
 Exec=change-folder-icon label public %U
 
 [Desktop Action documents]
 Name=Documents
-Name[ru]=No Label
 Icon=folder-documents
 Exec=change-folder-icon label documents %U
 
 [Desktop Action music]
 Name=Music
-Name[ru]=No Label
 Icon=folder-music
 Exec=change-folder-icon label music %U
 
 [Desktop Action pictures]
 Name=Pictures
-Name[ru]=No Label
 Icon=folder-pictures
 Exec=change-folder-icon label pictures %U
 
 [Desktop Action videos]
 Name=Videos
-Name[ru]=No Label
 Icon=folder-videos
 Exec=change-folder-icon label videos %U
 
 [Desktop Action text]
 Name=Texts
-Name[ru]=No Label
 Icon=folder-text
 Exec=change-folder-icon label text %U
 
 [Desktop Action development]
 Name=Development
-Name[ru]=No Label
 Icon=folder-development
 Exec=change-folder-icon label development %U
 
 [Desktop Action script]
-Name=Scripts
-Name[ru]=No Label
+Name=Script
 Icon=folder-script
 Exec=change-folder-icon label script %U
 
 [Desktop Action mail]
 Name=Mail
-Name[ru]=No Label
 Icon=folder-mail
 Exec=change-folder-icon label mail %U
 
 [Desktop Action image-people]
 Name=People
-Name[ru]=No Label
 Icon=folder-image-people
 Exec=change-folder-icon label image-people %U
 
 [Desktop Action network]
 Name=Network
-Name[ru]=No Label
 Icon=folder-network
 Exec=change-folder-icon label network %U
 
 [Desktop Action remote]
 Name=Remote
-Name[ru]=No Label
 Icon=folder-remote
 Exec=change-folder-icon label remote %U
 
 [Desktop Action gdrive]
 Name=Google Drive
-Name[ru]=No Label
 Icon=folder-gdrive
 Exec=change-folder-icon label gdrive %U
 
 [Desktop Action print]
 Name=Print
-Name[ru]=No Label
 Icon=folder-print
 Exec=change-folder-icon label print %U
 
 [Desktop Action games]
 Name=Games
-Name[ru]=No Label
 Icon=folder-games
 Exec=change-folder-icon label games %U
 
 [Desktop Action tar]
 Name=Archive
-Name[ru]=No Label
 Icon=folder-tar
 Exec=change-folder-icon label tar %U
 
 [Desktop Action cloud]
 Name=Cloud
-Name[ru]=No Label
 Icon=folder-cloud
 Exec=change-folder-icon label cloud %U
 
 [Desktop Action bookmark]
-Name=Bookmarks
-Name[ru]=No Label
+Name=Bookmark
 Icon=folder-bookmark
 Exec=change-folder-icon label bookmark %U
 
 [Desktop Action favorites]
 Name=Favorites
-Name[ru]=No Label
 Icon=folder-favorites
 Exec=change-folder-icon label favorites %U
 
 [Desktop Action important]
 Name=Important
-Name[ru]=No Label
 Icon=folder-important
 Exec=change-folder-icon label important %U
 
 [Desktop Action locked]
 Name=Locked
-Name[ru]=No Label
 Icon=folder-locked
 Exec=change-folder-icon label locked %U
 
 [Desktop Action unlocked]
 Name=Unlocked
-Name[ru]=No Label
 Icon=folder-unlocked
 Exec=change-folder-icon label unlocked %U

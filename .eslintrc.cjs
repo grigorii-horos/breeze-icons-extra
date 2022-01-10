@@ -13,7 +13,6 @@ const nopConfig = {
     'import',
     'simple-import-sort',
     'unicorn',
-    'prettier',
   ],
 };
 
@@ -21,10 +20,9 @@ const realConfig = {
   ...nopConfig,
   extends: [
     'eslint:recommended',
-    'airbnb',
+    'airbnb-base',
     'plugin:import/errors',
     'plugin:unicorn/recommended',
-    'prettier',
   ],
   rules: {
     'unicorn/filename-case': 0,
