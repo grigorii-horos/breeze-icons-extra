@@ -38,10 +38,6 @@ node index.js
 
 cd ./breeze-icons
 
-find -name '*.svg' -type f | parallel -j "$(nproc)" ../node_modules/.bin/svgo --config ../config.cjs --input '{}' --output '{}'
+find -name '*.svg' -type f | parallel -j "$(nproc)" ../node_modules/.bin/svgo --config ../config.cjs --input '{}' --output '{}' --quiet
 
 
-find -name '*.svg' -type l | while read line; do
-    ln -sf $(readlink $line) "${line}"
-    rm $line
-done
