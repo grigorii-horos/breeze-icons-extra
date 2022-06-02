@@ -28,17 +28,21 @@ const baseColors = ['#3daee9', '#232629', '#31363b'];
 const colors = {
   default: ['#3daee9', '#232629'],
 
-  black: ['#333333', '#d1d0d1'],
-  blue: ['#4183d7', '#ffffff'],
-  brown: ['#8b6039', '#f3f0c6'],
-  cyan: ['#21bbd7', '#132629'],
-  green: ['#3bad7e', '#183519'],
-  grey: ['#a7afb4', '#232629'],
-  magenta: ['#b5006a', '#130e19'],
-  orange: ['#f89406', '#222000'],
+  black: ['#3f3f3f', '#dcdcdc'],
+  blue: ['#5294e2', '#1d344f'],
+  bluegray: ['#607D8B', '#222C31'],
+  brown: ['#AE8E6C', '#111111'],
+  cyan: ['#00BCD4', '#00424A'],
+  green: ['#3bad7e', '#2F3E1F'],
+  grey: ['#8E8E8E', '#111111'],
+  magenta: ['#CA71DF', '#47274E'],
+  orange: ['#EB6637', '#522413'],
+  pink: ['#F06292', '#201010'],
+  teal: ['#16A085', '#04281E'],
   red: ['#eb0a42', '#111111'],
-  violet: ['#8e44ad', '#ffd0f6'],
-  yellow: ['#f2cb40', '#333000'],
+  violet: ['#7E57C2', '#150530'],
+  white: ['#E4E4E4', '#3F3F3F'],
+  yellow: ['#F9BD30', '#333000'],
 };
 
 const links = {
