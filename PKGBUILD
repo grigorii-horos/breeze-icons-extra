@@ -2,7 +2,7 @@
 # Contributor: FadeMind <fademind@gmail.com>
 
 pkgname=('breeze-icons-extra' 'breeze-icons-extra-light' 'breeze-icons-extra-dark')
-pkgver=5.94
+pkgver=5.97
 pkgrel=1
 pkgdesc="Breeze icon themes for KDE Plasma. Extra version"
 arch=('any')
@@ -27,12 +27,11 @@ prepare() {
   bash ./build.sh
 }
 
-# pkgver(){
-#   cd ../.icons
-#   _ver="$(cat CMakeLists.txt | grep -m1 '(ECM' | grep -o "[[:digit:]]*" | paste -sd'.')"
-#   echo "${_ver}.r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
-# }
-
+pkgver(){
+  cd ../.icons
+  _ver="$(cat CMakeLists.txt | grep -m1 '(ECM' | grep -o "[[:digit:]]*" | paste -sd'.')"
+  echo "${_ver}.r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
+}
 
 build() {
   cd ../

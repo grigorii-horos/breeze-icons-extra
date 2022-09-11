@@ -45,6 +45,40 @@ const colors = {
   yellow: ['#F9BD30', '#333000'],
 };
 
+const actions = [
+  'activities',
+  'book',
+  'bookmark',
+  'cloud',
+  'comic',
+  'development',
+  'documents',
+  'download',
+  'favorites',
+  'games',
+  'gdrive',
+  'html',
+  'image-people',
+  'important',
+  'library',
+  'locked',
+  'mail',
+  'network',
+  'open',
+  'pictures',
+  'print',
+  'publicshare',
+  'root',
+  'script',
+  'sound',
+  'tar',
+  'temp',
+  'templates',
+  'text',
+  'unlocked',
+  'videos',
+];
+
 const links = {
   downloads: 'download',
   image: 'pictures',
@@ -69,40 +103,9 @@ const linksCopies = {
 
 const templates = [
   ...new Set([
-    'activities',
-    'book',
-    'bookmark',
-    'cloud',
-    'comic',
-    'development',
-    'documents',
-    'download',
-    'favorites',
-    'games',
-    'gdrive',
-    'html',
-    'image-people',
-    'important',
-    'library',
-    'locked',
-    'mail',
-    'network',
-    'open',
-    'pictures',
-    'print',
-    'publicshare',
-    'root',
-    'script',
-    'sound',
-    'tar',
-    'temp',
-    'templates',
-    'text',
-    'unlocked',
-    'videos',
+    ...actions,
     ...Object.keys(linksCopies),
     ...Object.values(links),
-
     '',
   ]),
 ];
@@ -264,3 +267,69 @@ const fn = async (iconsDir, iconsOutDir) => {
 
 fn(iconsDirs[0], iconsOutDirs[0]);
 fn(iconsDirs[1], iconsOutDirs[1]);
+
+const generateDesktopFiles = async () => {
+  const colorNames = Object.keys(colors).filter((color) => color !== 'default');
+  const actionsNames = actions;
+
+  let desktopFileColors = `[Desktop Entry]
+Type=Service
+Encoding=UTF-8
+Version=2.0.3
+ServiceTypes=KonqPopupMenu/Plugin,inode/directory
+Actions=${colorNames.map((color) => `${color};`).join('')}noColor;
+X-KDE-Priority=TopLevel
+X-KDE-StartupNotify=false
+Icon=folder-red
+X-KDE-Submenu=Change color
+`;
+
+  desktopFileColors += `
+[Desktop Action noColor]
+Name=No Color
+Icon=folder
+Exec=change-folder-icon color "" %U
+`;
+
+  desktopFileColors += colorNames.map((color) => `
+[Desktop Action ${color}]
+Name=${color}
+Icon=folder-${color}
+Exec=change-folder-icon color ${color} %U
+`).join('');
+
+  //
+
+  let desktopFileActions = `[Desktop Entry]
+Type=Service
+Encoding=UTF-8
+Version=2.0.3
+ServiceTypes=KonqPopupMenu/Plugin,inode/directory
+Actions=${actionsNames.map((action) => `${action};`).join('')}noColor;
+X-KDE-Priority=TopLevel
+X-KDE-StartupNotify=false
+Icon=folder-games
+X-KDE-Submenu=Change label
+`;
+
+  desktopFileActions += `
+[Desktop Action noLabel]
+Name=No Label
+Icon=folder
+Exec=change-folder-icon label "" %U
+`;
+
+  desktopFileActions += actionsNames.map((action) => `
+[Desktop Action ${action}]
+Name=${action}
+Icon=folder-${action}
+Exec=change-folder-icon color ${action} %U
+`).join('');
+
+  //
+
+  await writeFile('change-color.desktop', desktopFileColors);
+  await writeFile('change-label.desktop', desktopFileActions);
+};
+
+generateDesktopFiles();

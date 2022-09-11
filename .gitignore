@@ -8,3 +8,5 @@ breeze-icons-extra-*.pkg.*
 tmp/
 .icons/
 install-dir
+change-color.desktop
+change-label.desktop
