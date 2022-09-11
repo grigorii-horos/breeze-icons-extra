@@ -1,5 +1,4 @@
 /* eslint-disable no-await-in-loop, no-restricted-syntax */
-import camelCase from 'camelcase';
 import mkdirp from 'mkdirp';
 import { existsSync } from 'node:fs';
 import {
@@ -8,6 +7,7 @@ import {
   unlink,
   writeFile,
 } from 'node:fs/promises';
+import { titleCase } from 'title-case';
 
 const iconsDirs = [
   './breeze-icons/icons/places',
@@ -297,7 +297,7 @@ Exec=change-folder-icon color "" %U
 
   desktopFileColors += colorNames.map((color) => `
 [Desktop Action ${color}]
-Name=${camelCase(color, { pascalCase: true })}
+Name=${titleCase(color.replaceAll('-', ' '), { pascalCase: true })}
 Icon=folder-${color}
 Exec=change-folder-icon color ${color} %U
 `).join('');
@@ -325,7 +325,7 @@ Exec=change-folder-icon label "" %U
 
   desktopFileActions += actionsNames.map((action) => `
 [Desktop Action ${action}]
-Name=${camelCase(action, { pascalCase: true })}
+Name=${titleCase(action.replaceAll('-', ' '), { pascalCase: true })}
 Icon=folder-${action}
 Exec=change-folder-icon color ${action} %U
 `).join('');
