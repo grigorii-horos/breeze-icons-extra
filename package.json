@@ -10,6 +10,7 @@
   "type": "module",
   "license": "ISC",
   "dependencies": {
+    "camelcase": "^7.0.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-standard-jsdoc": "^9.3.0",
     "eslint-plugin-import": "^2.25.4",

@@ -1,4 +1,5 @@
 /* eslint-disable no-await-in-loop, no-restricted-syntax */
+import camelCase from 'camelcase';
 import mkdirp from 'mkdirp';
 import { existsSync } from 'node:fs';
 import {
@@ -28,23 +29,23 @@ const baseColors = ['#3daee9', '#232629', '#31363b'];
 const colors = {
   default: ['#3daee9', '#232629'],
 
-  black: ['#333333', '#d1d0d1'],
-  white: ['#E4E4E4', '#3F3F3F'],
+  black: ['#333333', '#dcdcdc'],
+  white: ['#E4E4E4', '#000000'],
 
-  blue: ['#4183d7', '#ffffff'],
-  brown: ['#8b6039', '#f3f0c6'],
-  cyan: ['#21bbd7', '#132629'],
-  green: ['#3bad7e', '#183519'],
-  grey: ['#a7afb4', '#232629'],
-  magenta: ['#b5006a', '#130e19'],
-  orange: ['#f89406', '#222000'],
-  red: ['#eb0a42', '#111111'],
-  violet: ['#8e44ad', '#ffd0f6'],
-  yellow: ['#f2cb40', '#333000'],
+  blue: ['#4183d7', '#fff9f9'],
+  brown: ['#8b6039', '#f9fbff'],
+  cyan: ['#21bbd7', '#090000'],
+  green: ['#3bad7e', '#000009'],
+  grey: ['#a7afb4', '#000000'],
+  magenta: ['#b5006a', '#fdfeff'],
+  orange: ['#f89406', '#000009'],
+  red: ['#eb0a42', '#000009'],
+  violet: ['#8e44ad', '#fefffd'],
+  yellow: ['#f2cb40', '#000005'],
 
-  bluegray: ['#607D8B', '#222C31'],
-  pink: ['#F06292', '#201010'],
-  teal: ['#16A085', '#04281E'],
+  bluegray: ['#607D8B', '#fff9f9'],
+  pink: ['#F06292', '#000203'],
+  teal: ['#16A085', '#000005'],
 
 };
 
@@ -296,7 +297,7 @@ Exec=change-folder-icon color "" %U
 
   desktopFileColors += colorNames.map((color) => `
 [Desktop Action ${color}]
-Name=${color}
+Name=${camelCase(color, { pascalCase: true })}
 Icon=folder-${color}
 Exec=change-folder-icon color ${color} %U
 `).join('');
@@ -324,7 +325,7 @@ Exec=change-folder-icon label "" %U
 
   desktopFileActions += actionsNames.map((action) => `
 [Desktop Action ${action}]
-Name=${action}
+Name=${camelCase(action, { pascalCase: true })}
 Icon=folder-${action}
 Exec=change-folder-icon color ${action} %U
 `).join('');
