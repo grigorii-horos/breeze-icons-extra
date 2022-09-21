@@ -2,7 +2,7 @@
 # Contributor: FadeMind <fademind@gmail.com>
 
 pkgname=('breeze-icons-extra' 'breeze-icons-extra-light' 'breeze-icons-extra-dark')
-pkgver=5.97
+pkgver=5.98
 pkgrel=1
 pkgdesc="Breeze icon themes for KDE Plasma. Extra version"
 arch=('any')
@@ -57,9 +57,9 @@ package_breeze-icons-extra() {
     'breeze-icons-extra-dark: Install one of this packages'
   )
 
-  mkdir -p "${pkgdir}/usr/bin/" "${pkgdir}/usr/share/kservices5/ServiceMenus/"
-  install -D --mode=644 ../change-label.desktop "${pkgdir}/usr/share/kservices5/ServiceMenus/"
-  install -D --mode=644 ../change-color.desktop "${pkgdir}/usr/share/kservices5/ServiceMenus/"
+  mkdir -p "${pkgdir}/usr/bin/" "${pkgdir}/usr/share/kio/servicemenus/"
+  install -D --mode=644 ../change-label.desktop "${pkgdir}/usr/share/kio/servicemenus/"
+  install -D --mode=644 ../change-color.desktop "${pkgdir}/usr/share/kio/servicemenus/"
   install -D --mode=555 ../change-folder-icon "${pkgdir}/usr/bin/"
 }
 

@@ -278,13 +278,11 @@ const generateDesktopFiles = async () => {
 
   let desktopFileColors = `[Desktop Entry]
 Type=Service
-Encoding=UTF-8
-Version=2.0.3
-ServiceTypes=KonqPopupMenu/Plugin,inode/directory
+MimeType=inode/directory
 Actions=${colorNames.map((color) => `${color};`).join('')}noColor;
 X-KDE-Priority=TopLevel
 X-KDE-StartupNotify=false
-Icon=folder-red
+Icon=folder-green
 X-KDE-Submenu=Change color
 `;
 
@@ -306,9 +304,7 @@ Exec=change-folder-icon color ${color} %U
 
   let desktopFileActions = `[Desktop Entry]
 Type=Service
-Encoding=UTF-8
-Version=2.0.3
-ServiceTypes=KonqPopupMenu/Plugin,inode/directory
+MimeType=inode/directory
 Actions=${actionsNames.map((action) => `${action};`).join('')}noColor;
 X-KDE-Priority=TopLevel
 X-KDE-StartupNotify=false
