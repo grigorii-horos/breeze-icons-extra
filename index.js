@@ -2,10 +2,7 @@
 import mkdirp from 'mkdirp';
 import { existsSync } from 'node:fs';
 import {
-  readFile,
-  symlink,
-  unlink,
-  writeFile,
+  readFile, symlink, unlink, writeFile,
 } from 'node:fs/promises';
 import { titleCase } from 'title-case';
 
@@ -29,24 +26,20 @@ const baseColors = ['#3daee9', '#232629', '#31363b'];
 const colors = {
   default: ['#3daee9', '#232629'],
 
-  black: ['#333333', '#dcdcdc'],
-  white: ['#E4E4E4', '#000000'],
+  red: ['#eb0a42', '#000009'], //+
+  orange: ['#f89406', '#000009'], //+
+  yellow: ['#f2cb40', '#000005'], //+
+  green: ['#3bad7e', '#000009'], //+
+  cyan: ['#21bbd7', '#090000'], //+
+  blue: ['#4183d7', '#fff9f9'], //+
+  violet: ['#8e44ad', '#fefffd'], //+
+  magenta: ['#b5006a', '#fdfeff'], //+
 
-  blue: ['#4183d7', '#fff9f9'],
-  brown: ['#8b6039', '#f9fbff'],
-  cyan: ['#21bbd7', '#090000'],
-  green: ['#3bad7e', '#000009'],
-  grey: ['#a7afb4', '#000000'],
-  magenta: ['#b5006a', '#fdfeff'],
-  orange: ['#f89406', '#000009'],
-  red: ['#eb0a42', '#000009'],
-  violet: ['#8e44ad', '#fefffd'],
-  yellow: ['#f2cb40', '#000005'],
-
-  bluegray: ['#607D8B', '#fff9f9'],
-  pink: ['#F06292', '#000203'],
-  teal: ['#16A085', '#000005'],
-
+  black: ['#333333', '#dcdcdc'], // -
+  bluegrey: ['#607D8B', '#fff9f9'], //-
+  grey: ['#a7afb4', '#000000'], //+
+  white: ['#E4E4E4', '#000000'], //-
+  brown: ['#8b6039', '#f9fbff'], //+
 };
 
 const actions = [
@@ -97,7 +90,6 @@ const links = {
   recent: 'temp',
   home: 'user-home',
   network: 'network-workgroup',
-
 };
 
 const linksCopies = {
@@ -269,8 +261,8 @@ const fn = async (iconsDir, iconsOutDir) => {
   }
 };
 
-fn(iconsDirs[0], iconsOutDirs[0]);
-fn(iconsDirs[1], iconsOutDirs[1]);
+// fn(iconsDirs[0], iconsOutDirs[0]);
+// fn(iconsDirs[1], iconsOutDirs[1]);
 
 const generateDesktopFiles = async () => {
   const colorNames = Object.keys(colors).filter((color) => color !== 'default');
@@ -279,7 +271,9 @@ const generateDesktopFiles = async () => {
   let desktopFileColors = `[Desktop Entry]
 Type=Service
 MimeType=inode/directory
-Actions=${colorNames.map((color) => `${color};`).join('')}noColor;
+Actions=${colorNames
+    .map((color, index) => `action${`${index}`.padStart(2, '0')};`)
+    .join('')}_SEPARATOR_;noColor;
 X-KDE-Priority=TopLevel
 X-KDE-StartupNotify=false
 Icon=folder-green
@@ -293,19 +287,25 @@ Icon=folder
 Exec=change-folder-icon color "" %U
 `;
 
-  desktopFileColors += colorNames.map((color) => `
-[Desktop Action ${color}]
+  desktopFileColors += colorNames
+    .map(
+      (color, index) => `
+[Desktop Action action${`${index}`.padStart(2, '0')}]
 Name=${titleCase(color.replaceAll('-', ' '), { pascalCase: true })}
 Icon=folder-${color}
 Exec=change-folder-icon color ${color} %U
-`).join('');
+`,
+    )
+    .join('');
 
   //
 
   let desktopFileActions = `[Desktop Entry]
 Type=Service
 MimeType=inode/directory
-Actions=${actionsNames.map((action) => `${action};`).join('')}noColor;
+Actions=${actionsNames
+    .map((action, index) => `action${`${index}`.padStart(2, '0')};`)
+    .join('')}_SEPARATOR_;noColor;
 X-KDE-Priority=TopLevel
 X-KDE-StartupNotify=false
 Icon=folder-games
@@ -319,12 +319,16 @@ Icon=folder
 Exec=change-folder-icon label "" %U
 `;
 
-  desktopFileActions += actionsNames.map((action) => `
-[Desktop Action ${action}]
+  desktopFileActions += actionsNames
+    .map(
+      (action, index) => `
+[Desktop Action action${`${index}`.padStart(2, '0')}]
 Name=${titleCase(action.replaceAll('-', ' '), { pascalCase: true })}
 Icon=folder-${action}
-Exec=change-folder-icon color ${action} %U
-`).join('');
+Exec=change-folder-icon label ${action} %U
+`,
+    )
+    .join('');
 
   //
 
