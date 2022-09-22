@@ -261,8 +261,8 @@ const fn = async (iconsDir, iconsOutDir) => {
   }
 };
 
-// fn(iconsDirs[0], iconsOutDirs[0]);
-// fn(iconsDirs[1], iconsOutDirs[1]);
+fn(iconsDirs[0], iconsOutDirs[0]);
+fn(iconsDirs[1], iconsOutDirs[1]);
 
 const generateDesktopFiles = async () => {
   const colorNames = Object.keys(colors).filter((color) => color !== 'default');
@@ -276,8 +276,8 @@ Actions=${colorNames
     .join('')}_SEPARATOR_;noColor;
 X-KDE-Priority=TopLevel
 X-KDE-StartupNotify=false
-Icon=folder-green
 X-KDE-Submenu=Change color
+Icon=folder-green
 `;
 
   desktopFileColors += `
@@ -305,11 +305,11 @@ Type=Service
 MimeType=inode/directory
 Actions=${actionsNames
     .map((action, index) => `action${`${index}`.padStart(2, '0')};`)
-    .join('')}_SEPARATOR_;noColor;
+    .join('')}_SEPARATOR_;noLabel;
 X-KDE-Priority=TopLevel
 X-KDE-StartupNotify=false
-Icon=folder-games
 X-KDE-Submenu=Change label
+Icon=folder-bookmark
 `;
 
   desktopFileActions += `
