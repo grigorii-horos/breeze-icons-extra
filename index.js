@@ -172,11 +172,10 @@ const fn = async (iconsDir, iconsOutDir) => {
     <style type="text/css" >
 `;
 
-            style += `    .ColorText {
+          style += `    .ColorText {
       color:${colors[color][0]};
     }
 `;
-
 
           style += `    </style>
 `;
@@ -259,7 +258,10 @@ const fn = async (iconsDir, iconsOutDir) => {
           svg = svg.replaceAll('<style type="text/css" id="current-color-scheme">', `${style}\n    <style type="text/css" id="current-color-scheme">`);
           svg = svg.replaceAll('<style id="current-color-scheme" type="text/css">', `${style}\n    <style type="text/css" id="current-color-scheme">`);
 
-          svg = svg.replaceAll('class="ColorScheme-Text"', 'class="ColorText"');
+          if (colors[color][1] !== 'default') {
+            svg = svg.replaceAll('class="ColorScheme-Text"', 'class="ColorText"');
+          }
+
           svg = svg.replaceAll('class="ColorScheme-Highlight"', 'class="ColorHighlight"');
 
           await writeFile(
