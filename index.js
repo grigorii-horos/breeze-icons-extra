@@ -26,20 +26,20 @@ const baseColors = ['#3daee9', '#232629', '#31363b'];
 const colors = {
   default: ['#3daee9', '#232629'],
 
-  red: ['#eb0a42', '#000009'], //+
-  orange: ['#f89406', '#000009'], //+
-  yellow: ['#f2cb40', '#000005'], //+
-  green: ['#3bad7e', '#000009'], //+
-  cyan: ['#21bbd7', '#090000'], //+
-  blue: ['#4183d7', '#fff9f9'], //+
-  violet: ['#8e44ad', '#fefffd'], //+
-  magenta: ['#b5006a', '#fdfeff'], //+
+  red: ['#eb0a42', 'default'], //+
+  orange: ['#f89406', 'default'], //+
+  yellow: ['#f2cb40', 'default'], //+
+  green: ['#3bad7e', 'default'], //+
+  cyan: ['#21bbd7', 'default'], //+
+  blue: ['#4183d7', 'default'], //+
+  violet: ['#8e44ad', 'default'], //+
+  magenta: ['#b5006a', 'default'], //+
 
   black: ['#333333', '#dcdcdc'], // -
   bluegrey: ['#607D8B', '#fff9f9'], //-
   grey: ['#a7afb4', '#000000'], //+
   white: ['#E4E4E4', '#000000'], //-
-  brown: ['#8b6039', '#f9fbff'], //+
+  brown: ['#8b6039', 'default'], //+
 };
 
 const actions = [
@@ -164,12 +164,32 @@ const fn = async (iconsDir, iconsOutDir) => {
             'UTF-8',
           );
 
-          const newColor = colors[color][0];
-          svg = svg.replaceAll('#232629', newColor);
-          svg = svg.replaceAll('#eff0f1', newColor);
+          // const newColor = colors[color][0];
+          // svg = svg.replaceAll('#232629', newColor);
+          // svg = svg.replaceAll('#eff0f1', newColor);
 
-          svg = svg.replaceAll('ColorScheme-Text', 'ctn');
-          svg = svg.replaceAll('id="current-color-scheme"', '');
+          let style = `
+    <style type="text/css" >
+`;
+
+          if (colors[color][1] !== 'default') {
+            style += `    .ColorText {
+      color:${colors[color][0]};
+    }
+`;
+          }
+
+          style += `    </style>
+`;
+
+          svg = svg.replaceAll('<style type="text/css" id="current-color-scheme">', `${style}\n    <style type="text/css" id="current-color-scheme">`);
+          svg = svg.replaceAll('<style id="current-color-scheme" type="text/css">', `${style}\n    <style type="text/css" id="current-color-scheme">`);
+
+          svg = svg.replaceAll('class="ColorScheme-Text"', 'class="ColorText"');
+          svg = svg.replaceAll('class="ColorScheme-Highlight"', 'class="ColorHighlight"');
+
+          // svg = svg.replaceAll('ColorScheme-Text', 'ctn');
+          // svg = svg.replaceAll('id="current-color-scheme"', '');
 
           await writeFile(
             `${iconsOutDir}/${size}/folder-${color}${
@@ -216,13 +236,32 @@ const fn = async (iconsDir, iconsOutDir) => {
             'UTF-8',
           );
 
-          svg = svg.replaceAll(baseColors[0], colors[color][0]);
-          svg = svg.replaceAll(baseColors[1], colors[color][1]);
-          svg = svg.replaceAll(baseColors[2], colors[color][1]);
+          // svg = svg.replaceAll(baseColors[0], colors[color][0]);
+          // svg = svg.replaceAll(baseColors[1], colors[color][1]);
+          // svg = svg.replaceAll(baseColors[2], colors[color][1]);
 
-          svg = svg.replaceAll('ColorScheme-Text', 'ctn');
-          svg = svg.replaceAll('ColorScheme-Highlight', 'chn');
-          svg = svg.replaceAll('id="current-color-scheme"', '');
+          let style = `
+    <style type="text/css" >`;
+
+          if (colors[color][1] !== 'default') {
+            style += `
+    .ColorText {
+      color:${colors[color][1]};
+    }
+`;
+          }
+
+          style += `    .ColorHighlight {
+      color:${colors[color][0]};
+    }
+    </style>
+`;
+
+          svg = svg.replaceAll('<style type="text/css" id="current-color-scheme">', `${style}\n    <style type="text/css" id="current-color-scheme">`);
+          svg = svg.replaceAll('<style id="current-color-scheme" type="text/css">', `${style}\n    <style type="text/css" id="current-color-scheme">`);
+
+          svg = svg.replaceAll('class="ColorScheme-Text"', 'class="ColorText"');
+          svg = svg.replaceAll('class="ColorScheme-Highlight"', 'class="ColorHighlight"');
 
           await writeFile(
             `${iconsOutDir}/${size}/folder-${color}${
