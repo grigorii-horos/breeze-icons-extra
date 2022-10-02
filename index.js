@@ -172,12 +172,11 @@ const fn = async (iconsDir, iconsOutDir) => {
     <style type="text/css" >
 `;
 
-          if (colors[color][1] !== 'default') {
             style += `    .ColorText {
       color:${colors[color][0]};
     }
 `;
-          }
+
 
           style += `    </style>
 `;
