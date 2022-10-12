@@ -26,20 +26,18 @@ const baseColors = ['#3daee9', '#232629', '#31363b'];
 const colors = {
   default: ['#3daee9', '#232629'],
 
-  red: ['#eb0a42', 'default'], //+
-  orange: ['#f89406', 'default'], //+
-  yellow: ['#f2cb40', 'default'], //+
-  green: ['#3bad7e', 'default'], //+
-  cyan: ['#21bbd7', 'default'], //+
-  blue: ['#4183d7', 'default'], //+
-  violet: ['#8e44ad', 'default'], //+
-  magenta: ['#b5006a', 'default'], //+
+  red: ['#F44336', 'default'], //+
+  orange: ['#FF9800', 'default'], //+
+  yellow: ['#FFEB3B', 'default'], //+
+  green: ['#4CAF50', 'default'], //+
+  teal: ['#009688', 'default'], //+
+  cyan: ['#00BCD4', 'default'], //+
+  blue: ['#2196F3', 'default'], //+
+  violet: ['#673AB7', 'default'], //+
+  magenta: ['#9C27B0', 'default'], //+
 
-  black: ['#333333', '#dcdcdc'], // -
-  bluegrey: ['#607D8B', '#fff9f9'], //-
+  darkgrey: ['#5c5c5c', '#ffffff'], //-
   grey: ['#a7afb4', '#000000'], //+
-  white: ['#E4E4E4', '#000000'], //-
-  brown: ['#8b6039', 'default'], //+
 };
 
 const actions = [
@@ -74,6 +72,31 @@ const actions = [
   'text',
   'unlocked',
   'videos',
+  //
+
+  'appimage',
+  'build',
+  'calculate',
+  'chart',
+  'crash',
+  'database',
+  'design',
+  'desktop',
+  'docker',
+  'drawing',
+  'extension',
+  'flatpack',
+  'git',
+  'language',
+  'log',
+  'mac',
+  'notes',
+  'paint',
+  'presentation',
+  'sign',
+  'snap',
+  'table',
+  'windows',
 ];
 
 const links = {
