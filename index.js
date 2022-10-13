@@ -26,15 +26,15 @@ const baseColors = ['#3daee9', '#232629', '#31363b'];
 const colors = {
   default: ['#3daee9', '#232629'],
 
-  red: ['#F44336', 'default'], //+
-  orange: ['#FF9800', 'default'], //+
-  yellow: ['#FFEB3B', 'default'], //+
-  green: ['#4CAF50', 'default'], //+
-  teal: ['#009688', 'default'], //+
-  cyan: ['#00BCD4', 'default'], //+
-  blue: ['#2196F3', 'default'], //+
-  violet: ['#673AB7', 'default'], //+
-  magenta: ['#9C27B0', 'default'], //+
+  red: ['#D32F2F', 'default'], //+
+  orange: ['#F57C00', 'default'], //+
+  yellow: ['#FBC02D', 'default'], //+
+  green: ['#388E3C', 'default'], //+
+  teal: ['#00796B', 'default'], //+
+  cyan: ['#0097A7', 'default'], //+
+  blue: ['#1976D2', 'default'], //+
+  violet: ['#512DA8', 'default'], //+
+  magenta: ['#7B1FA2', 'default'], //+
 
   darkgrey: ['#5c5c5c', '#ffffff'], //-
   grey: ['#a7afb4', '#000000'], //+
