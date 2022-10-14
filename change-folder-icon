@@ -1,7 +1,84 @@
 #!/usr/bin/env bash
 
-labels=(activities book bookmark cloud comic development documents download favorites games gdrive html image-people important library locked mail network open pictures print publicshare root script sound tar temp templates text unlocked videos)
-colors=(black blue bluegray brown cyan green grey magenta orange pink teal red violet white yellow)
+labels=(
+  activities
+  android
+  appimage
+  blender
+  book
+  bookmark
+  build
+  calculate
+  chart
+  cloud
+  comic
+  crash
+  database
+  decrypted
+  design
+  desktop
+  development
+  docker
+  documents
+  download
+  drawing
+  encrypted
+  extension
+  favorites
+  flatpak
+  games
+  gdrive
+  git
+  godot
+  html
+  important
+  java
+  language
+  library
+  locked
+  log
+  mac
+  mail
+  network
+  notes
+  open
+  paint
+  pictures
+  podcast
+  presentation
+  print
+  publicshare
+  root
+  rpm
+  script
+  sign
+  snap
+  sound
+  table
+  tar
+  temp
+  templates
+  text
+  trash
+  unlocked
+  videos
+  windows
+  image-people
+)
+
+colors=(
+  red
+  orange
+  yellow
+  green
+  teal
+  cyan
+  blue
+  violet
+  magenta
+  darkgrey
+  grey
+)
 
 if (( $# < 3 )); then
   echo Not enought arguments
