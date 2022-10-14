@@ -39,7 +39,7 @@ const colors = {
 };
 
 const actions = {
-    // deb: { replaceColors: "#f62459" },
+  // deb: { replaceColors: "#f62459" },
 
   activities: {},
   android: { replaceColors: "#9bd916" },
@@ -52,9 +52,9 @@ const actions = {
   chart: {},
   cloud: {},
   comic: {},
-  crash: { replaceColors: "#eb0a42" },
+  crash: { replaceColors: ["#eb0a42"] },
   database: {},
-  decrypted: { replaceColors: "#5c5c5c" },
+  decrypted: { replaceColors: ["#5c5c5c"] },
   design: {},
   desktop: {},
   development: {},
@@ -62,7 +62,7 @@ const actions = {
   documents: {},
   download: {},
   drawing: {},
-  encrypted: { replaceColors: "#5c5c5c" },
+  encrypted: { replaceColors: ["#5c5c5c"] },
   extension: {},
   favorites: {},
   flatpak: {},
@@ -71,8 +71,8 @@ const actions = {
   git: {},
   godot: {},
   html: {},
-  important: { replaceColors: "#eb0a42" },
-  java: { replaceColors: "#ff8b23" },
+  important: { replaceColors: ["#eb0a42", "#da4453"] },
+  java: { replaceColors: ["#ff8b23"] },
   language: {},
   library: {},
   locked: {},
@@ -84,12 +84,12 @@ const actions = {
   open: {},
   paint: {},
   pictures: {},
-  podcast: { replaceColors: "#f89406" },
+  podcast: { replaceColors: ["#f89406"] },
   presentation: {},
   print: {},
   publicshare: {},
   root: {},
-  rpm: { replaceColors: "#cf000f" },
+  rpm: { replaceColors: ["#cf000f"] },
   script: {},
   sign: {},
   snap: {},
@@ -99,13 +99,12 @@ const actions = {
   temp: {},
   templates: {},
   text: {},
-  trash: { replaceColors: "#3bad7e" },
+  trash: { replaceColors: ["#3bad7e"] },
   unlocked: {},
   videos: {},
   windows: {},
 
-    "image-people": {},
-
+  "image-people": {},
 };
 
 const links = {
@@ -176,16 +175,18 @@ const fn = async (iconsDir, iconsOutDir) => {
               "UTF-8"
             );
 
-            if (actions[template].replaceColors) {
+            if (actions[template].replaceColors[0]) {
               svg = svg.replaceAll(
-                '"fill:' + actions[template].replaceColors + '"',
+                '"fill:' + actions[template].replaceColors[0] + '"',
                 '"fill:currentColor" class="ColorScheme-Text"'
               );
+            }
 
-              // svg = svg.replaceAll(
-              //   '"fill:' + actions[template].replaceColors[0] + '"',
-              //   '"fill:currentColor" class="ColorScheme-Text"'
-              // );
+            if (actions[template].replaceColors[1]) {
+              svg = svg.replaceAll(
+                '"fill:' + actions[template].replaceColors[1] + '"',
+                '"fill:currentColor" class="ColorScheme-Text"'
+              );
             }
 
             await writeFile(
@@ -202,10 +203,6 @@ const fn = async (iconsDir, iconsOutDir) => {
             `${iconsDir}/${size}/folder${template ? `-${template}` : ""}.svg`,
             "UTF-8"
           );
-
-          // const newColor = colors[color][0];
-          // svg = svg.replaceAll('#232629', newColor);
-          // svg = svg.replaceAll('#eff0f1', newColor);
 
           let style = `
     <style type="text/css" >
@@ -234,9 +231,6 @@ const fn = async (iconsDir, iconsOutDir) => {
             'class="ColorHighlight"'
           );
 
-          // svg = svg.replaceAll('ColorScheme-Text', 'ctn');
-          // svg = svg.replaceAll('id="current-color-scheme"', '');
-
           await writeFile(
             `${iconsOutDir}/${size}/folder-${color}${
               template ? `-${template}` : ""
@@ -262,9 +256,16 @@ const fn = async (iconsDir, iconsOutDir) => {
               "UTF-8"
             );
 
-            if (actions[template].replaceColors) {
+            if (actions[template].replaceColors[0]) {
               svg = svg.replaceAll(
-                '"fill:' + actions[template].replaceColors + '"',
+                '"fill:' + actions[template].replaceColors[0] + '"',
+                '"fill:currentColor" class="ColorScheme-Highlight"'
+              );
+            }
+
+            if (actions[template].replaceColors[1]) {
+              svg = svg.replaceAll(
+                '"fill:' + actions[template].replaceColors[1] + '"',
                 '"fill:currentColor" class="ColorScheme-Highlight"'
               );
             }
