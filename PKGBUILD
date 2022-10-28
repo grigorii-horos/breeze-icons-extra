@@ -2,7 +2,7 @@
 # Contributor: FadeMind <fademind@gmail.com>
 
 pkgname=('breeze-icons-extra' 'breeze-icons-extra-light' 'breeze-icons-extra-dark')
-pkgver=5.98
+pkgver=5.99.0.r2.694470b
 pkgrel=1
 pkgdesc="Breeze icon themes for KDE Plasma. Extra version"
 arch=('any')
@@ -10,9 +10,7 @@ url='https://github.com/grigorii-horos/breeze-icons-extra'
 license=('LGPL')
 groups=('kf5')
 makedepends=(
-  'extra-cmake-modules'
   'git'
-  'qt5-base'
   'nodejs'
   'npm'
   'parallel'
@@ -34,19 +32,7 @@ pkgver(){
 }
 
 build() {
-  cd ../
-
-  cd ./src/build
-  cmake ../../breeze-icons \
-    -DCMAKE_BUILD_TYPE=None \
-    -DCMAKE_INSTALL_PREFIX=/usr \
-    -DBUILD_TESTING=OFF \
-    -DBINARY_ICONS_RESOURCE=OFF \
-    -DWITH_ICON_GENERATION=OFF
-
-  make
-
-  make DESTDIR="../install-dir" install
+  true
 }
 
 package_breeze-icons-extra() {
@@ -68,7 +54,8 @@ package_breeze-icons-extra-light() {
   depends=('breeze-icons-extra')
 
   mkdir -p "${pkgdir}/usr/share/icons/breeze"
-  cp -Rp ./install-dir/usr/share/icons/breeze/. "${pkgdir}/usr/share/icons/breeze/"
+  cp -Rp "../breeze-icons/icons/." "${pkgdir}/usr/share/icons/breeze/"
+  rm "${pkgdir}/usr/share/icons/breeze/"{AUTHORS,CMakeLists.txt}
 }
 
 package_breeze-icons-extra-dark() {
@@ -76,5 +63,7 @@ package_breeze-icons-extra-dark() {
   depends=('breeze-icons-extra')
 
   mkdir -p "${pkgdir}/usr/share/icons/breeze-dark"
-  cp -Rp ./install-dir/usr/share/icons/breeze-dark/. "${pkgdir}/usr/share/icons/breeze-dark/"
+  cp -Rp "../breeze-icons/icons/." "${pkgdir}/usr/share/icons/breeze-dark/"
+  cp -Rp "../breeze-icons/icons-dark/." "${pkgdir}/usr/share/icons/breeze-dark/"
+  rm "${pkgdir}/usr/share/icons/breeze-dark/"{AUTHORS,CMakeLists.txt}
 }
