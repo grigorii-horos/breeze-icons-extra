@@ -1,9 +1,10 @@
 /* eslint-disable no-await-in-loop, no-restricted-syntax */
-import mkdirp from 'mkdirp';
 import { existsSync } from 'node:fs';
 import {
   readFile, symlink, unlink, writeFile,
 } from 'node:fs/promises';
+
+import mkdirp from 'mkdirp';
 import { titleCase } from 'title-case';
 
 const iconsDirs = [
@@ -34,13 +35,9 @@ const colors = {
   violet: ['#823ab6', '#000000'], //+
   magenta: ['#e92063', '#000000'], //+
 
-  brown: ['#655448', '#ffffff'], //+
-  seagreen: ['#486554', '#ffffff'], //+
-  gigas: ['#544865', '#ffffff'], //+
-
-  falcon: ['#78546c', '#ddffff'], //-
-  siam: ['#6c7854', '#ffddff'], //-
-  cuttysark: ['#546c78', '#ffffdd'], //-
+  brown: ['#83604e', '#ffffff'], //+
+  seagreen: ['#4e8369', '#ffffff'], //+
+  gigas: ['#694e83', '#ffffff'], //+
 
   darkgrey: ['#4c4c4c', '#ffffff'], //-
   grey: ['#b7b7b7', '#000000'], //+
