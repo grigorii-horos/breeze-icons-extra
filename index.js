@@ -35,83 +35,78 @@ const colors = {
   violet: ['#823ab6', '#000000'], //+
   magenta: ['#e92063', '#000000'], //+
 
-  brown: ['#83604e', '#ffffff'], //+
-  seagreen: ['#4e8369', '#ffffff'], //+
-  gigas: ['#694e83', '#ffffff'], //+
-
-  darkgrey: ['#4c4c4c', '#ffffff'], //-
-  grey: ['#b7b7b7', '#000000'], //+
+  grey: ['#a7afb4', '#000000'], //+
 };
 
-const actions = {
-  // deb: { replaceColors: "#f62459" },
-
-  activities: {},
-  favorites: {},
-  'image-people': {},
-  important: { replaceColors: ['#da4453', '#eb0a42'] },
-  open: {},
-
+const actionsSpecial = {
+  documents: {},
   download: {},
-  bookmark: {},
-  book: {},
-  comic: {},
-  desktop: {},
-  text: {},
-  games: {},
-  mail: {},
-  notes: {},
-  trash: { replaceColors: ['#3bad7e'] },
-  tar: {},
-  drawing: {},
-  paint: {},
   pictures: {},
   sound: {},
   videos: {},
-  podcast: { replaceColors: ['#f89406'] },
-  calculate: {},
-  documents: {},
-  chart: {},
-  design: {},
-  library: {},
+  games: {},
+  book: {},
+  comic: {},
   presentation: {},
-  print: {},
+  chart: {},
+  calculate: {},
+  text: {},
+  bookmark: {},
+  mail: {},
+  notes: {},
   table: {},
+  print: {},
+
+  desktop: {},
 
   cloud: {},
   gdrive: {},
   network: {},
   publicshare: {},
 
-  mac: {},
-  windows: {},
-  android: { replaceColors: ['#9bd916'] },
-  appimage: {},
-  flatpak: {},
-  snap: {},
-  rpm: { replaceColors: ['#cf000f'] },
-  blender: { replaceColors: ['#f89406'] },
-  godot: {},
+};
 
+const actionsDev = {
   build: {},
   script: {},
   html: {},
   git: {},
-  docker: {},
-  java: { replaceColors: ['#ff8b23'] },
-  // crash: { replaceColors: ['#eb0a42'] },
   database: {},
-  root: {},
   log: {},
   development: {},
+  language: {},
+
+  mac: {},
+  windows: {},
+  android: { replaceColors: ['#9bd916'] },
+};
+const actionsAdditional = {
+  important: { replaceColors: ['#da4453', '#eb0a42'] },
+  activities: {},
+  favorites: {},
+  'image-people': {},
+
+  trash: { replaceColors: ['#3bad7e'] },
+  tar: {},
+  drawing: {},
+  paint: {},
+  podcast: { replaceColors: ['#f89406'] },
+  design: {},
+  library: {},
+
+  root: {},
   temp: {},
   templates: {},
-  language: {},
-  extension: {},
 
   sign: {},
   locked: {},
   unlocked: {},
+};
+
+const actions = {
+  ...actionsSpecial,
+  ...actionsDev,
+  ...actionsAdditional,
 };
 
 const links = {
@@ -380,9 +375,8 @@ MimeType=inode/directory
 Actions=${colorNames
     .map((color, index) => `action${`${index}`.padStart(2, '0')};`)
     .join('')}_SEPARATOR_;noColor;
-X-KDE-Priority=TopLevel
 X-KDE-StartupNotify=false
-X-KDE-Submenu=Change color
+X-KDE-Submenu=Change Color
 Icon=folder-green
 `;
 
@@ -412,9 +406,8 @@ MimeType=inode/directory
 Actions=${actionsNames
     .map((action, index) => `action${`${index}`.padStart(2, '0')};`)
     .join('')}_SEPARATOR_;noLabel;
-X-KDE-Priority=TopLevel
 X-KDE-StartupNotify=false
-X-KDE-Submenu=Change label
+X-KDE-Submenu=Change Label
 Icon=folder-bookmark
 `;
 

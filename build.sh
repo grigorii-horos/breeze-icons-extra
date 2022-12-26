@@ -13,14 +13,6 @@ rm -rf ./breeze-icons
 cp -Rpf --reflink=auto ./.icons/ ./breeze-icons
 
 
-sed -i -e 's/5\.95/5\.88/g' ./breeze-icons/CMakeLists.txt
-sed -i -e 's/5\.96/5\.88/g' ./breeze-icons/CMakeLists.txt
-sed -i -e 's/5\.97/5\.88/g' ./breeze-icons/CMakeLists.txt
-sed -i -e 's/5\.98/5\.88/g' ./breeze-icons/CMakeLists.txt
-sed -i -e 's/5\.99/5\.88/g' ./breeze-icons/CMakeLists.txt
-sed -i -e 's/5\.100/5\.88/g' ./breeze-icons/CMakeLists.txt
-sed -i -e 's/5\.101/5\.88/g' ./breeze-icons/CMakeLists.txt
-
 cd ./breeze-icons/icons
 python ../generate-24px-versions.py ./
 

@@ -2,7 +2,7 @@
 # Contributor: FadeMind <fademind@gmail.com>
 
 pkgname=('breeze-icons-extra' 'breeze-icons-extra-light' 'breeze-icons-extra-dark')
-pkgver=5.99.0.r2.694470b
+pkgver=5.101.0.r19.76ba10a
 pkgrel=1
 pkgdesc="Breeze icon themes for KDE Plasma. Extra version"
 arch=('any')
