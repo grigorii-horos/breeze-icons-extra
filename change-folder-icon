@@ -70,13 +70,16 @@ colors=(
   red
   orange
   yellow
+  chartreuse
   green
-  teal
+  springgreen
   cyan
+  azure
   blue
   violet
   magenta
-  darkgrey
+  rose
+
   grey
 )
 
