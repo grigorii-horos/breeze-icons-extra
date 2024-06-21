@@ -2,7 +2,7 @@
 # Contributor: FadeMind <fademind@gmail.com>
 
 pkgname=('breeze-icons-extra' 'breeze-icons-extra-light' 'breeze-icons-extra-dark')
-pkgver=5.249.0.r2088.425583e1
+pkgver=6.3.0.r2200.bd73e568
 pkgrel=1
 pkgdesc="Breeze icon themes for KDE Plasma. Extra version"
 arch=('any')
@@ -14,15 +14,18 @@ makedepends=(
   'nodejs'
   'npm'
   'parallel'
+  'extra-cmake-modules'
 )
 
 source=()
 sha256sums=()
 
 prepare() {
-  mkdir -p build
+
   cd ../
-  bash ./build.sh
+
+  mkdir -p build
+  # bash ./build.sh
 }
 
 pkgver(){
@@ -43,27 +46,44 @@ package_breeze-icons-extra() {
     'breeze-icons-extra-dark: Install one of this packages'
   )
 
+  cd ..
+
   mkdir -p "${pkgdir}/usr/bin/" "${pkgdir}/usr/share/kio/servicemenus/"
-  install -D --mode=644 ../change-label.desktop "${pkgdir}/usr/share/kio/servicemenus/"
-  install -D --mode=644 ../change-color.desktop "${pkgdir}/usr/share/kio/servicemenus/"
-  install -D --mode=555 ../change-folder-icon "${pkgdir}/usr/bin/"
+  install -D --mode=644 ./change-label.desktop "${pkgdir}/usr/share/kio/servicemenus/"
+  install -D --mode=644 ./change-color.desktop "${pkgdir}/usr/share/kio/servicemenus/"
+  install -D --mode=555 ./change-folder-icon "${pkgdir}/usr/bin/"
+
+
+  cp -Rp "./output/usr/include/." "${pkgdir}/usr/include/"
+  cp -Rp "./output/usr/lib/." "${pkgdir}/usr/lib/"
+
 }
 
 package_breeze-icons-extra-light() {
   provides=('breeze-icons-extra-light')
   depends=('breeze-icons-extra')
 
+  cd ..
+
+  echo oooooooo
+  pwd
+  echo oooooooo
+
   mkdir -p "${pkgdir}/usr/share/icons/breeze"
-  cp -Rp "../breeze-icons/icons/." "${pkgdir}/usr/share/icons/breeze/"
-  rm "${pkgdir}/usr/share/icons/breeze/"{AUTHORS,CMakeLists.txt}
+  cp -Rp "./output/usr/share/icons/breeze/." "${pkgdir}/usr/share/icons/breeze/"
 }
 
 package_breeze-icons-extra-dark() {
   provides=('breeze-icons-extra-dark')
   depends=('breeze-icons-extra')
 
+  cd ..
+
+  echo oooooooo
+  pwd
+  echo oooooooo
+
   mkdir -p "${pkgdir}/usr/share/icons/breeze-dark"
-  cp -Rp "../breeze-icons/icons/." "${pkgdir}/usr/share/icons/breeze-dark/"
-  cp -Rp "../breeze-icons/icons-dark/." "${pkgdir}/usr/share/icons/breeze-dark/"
-  rm "${pkgdir}/usr/share/icons/breeze-dark/"{AUTHORS,CMakeLists.txt}
+  cp -Rp "./output/usr/share/icons/breeze/." "${pkgdir}/usr/share/icons/breeze-dark/"
+  cp -Rp "./output/usr/share/icons/breeze-dark/." "${pkgdir}/usr/share/icons/breeze-dark/"
 }
